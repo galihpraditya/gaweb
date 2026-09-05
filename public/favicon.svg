@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&amp;display=swap');
+      .font-gw {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-weight: 800;
+      }
+    </style>
+  </defs>
+
+  <!-- Background White Squircle with border -->
+  <rect x="16" y="16" width="480" height="480" rx="120" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="12" />
+
+  <!-- Monogram "gw": g (hitam #092734), w (biru gelap #004F72) -->
+  <text
+    x="256"
+    y="336"
+    text-anchor="middle"
+    class="font-gw"
+    font-size="248"
+    letter-spacing="-10"
+  >
+    <tspan fill="#092734">g</tspan><tspan fill="#004F72">w</tspan>
+  </text>
+</svg>
