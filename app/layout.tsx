@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { BRAND } from "@/lib/constants";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { Analytics } from "@vercel/analytics/next";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
     <html lang="id" className={`scroll-smooth ${plusJakartaSans.variable}`}>
       <body className="min-h-screen bg-[#F9F9F9] text-[#092734] font-sans antialiased selection:bg-[#004F72] selection:text-white">
         <LanguageProvider>{children}</LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
