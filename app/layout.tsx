@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { BRAND } from "@/lib/constants";
+import { BRAND, SEO_CONFIG, SITE_URL } from "@/lib/constants";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { Analytics } from "@vercel/analytics/next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -19,39 +19,71 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: `${BRAND.name} | ${BRAND.tagline}`,
-  description: BRAND.description,
-  keywords: [
-    "gaweb",
-    "gawe website",
-    "jasa pembuatan website",
-    "website custom",
-    "bukan wordpress",
-    "landing page bisnis",
-    "company profile custom",
-    "website modern cepat",
-    "web development indonesia",
-    "website tanpa plugin",
-  ],
-  authors: [{ name: BRAND.name }],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SEO_CONFIG.defaultTitle,
+    template: SEO_CONFIG.titleTemplate,
+  },
+  description: SEO_CONFIG.defaultDescription,
+  keywords: SEO_CONFIG.keywords,
+  authors: [{ name: BRAND.fullName, url: SITE_URL }],
+  creator: BRAND.fullName,
+  publisher: BRAND.fullName,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "id-ID": "/",
+      "en-US": "/?lang=en",
+    },
+  },
   openGraph: {
-    title: `${BRAND.name} | ${BRAND.tagline}`,
-    description: BRAND.description,
-    type: "website",
-    locale: "id_ID",
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.defaultDescription,
+    url: SITE_URL,
     siteName: BRAND.name,
+    locale: "id_ID",
+    alternateLocale: ["en_US"],
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${BRAND.name} - Jasa Pembuatan Website Custom & Landing Page Cepat`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.defaultDescription,
+    images: ["/opengraph-image"],
+    creator: "@gaweb.website",
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
+  category: "technology",
+  classification: "Jasa Pembuatan Website Custom & Landing Page",
 };
 
 export default function RootLayout({
@@ -61,9 +93,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`scroll-smooth ${plusJakartaSans.variable}`}>
+      <head>
+        <JsonLd />
+      </head>
       <body className="min-h-screen bg-[#F9F9F9] text-[#092734] font-sans antialiased selection:bg-[#004F72] selection:text-white">
         <LanguageProvider>{children}</LanguageProvider>
-        <Analytics />
       </body>
     </html>
   );

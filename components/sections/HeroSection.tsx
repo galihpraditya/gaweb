@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { getWhatsAppUrl } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function HeroSection() {
@@ -16,7 +16,7 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&auto=format&fit=crop&q=80"
-          alt="Modern workspace ambiance"
+          alt="gaweb - Jasa Pembuatan Website Custom Modern, Cepat & Aman"
           fill
           className="object-cover photo-natural opacity-[0.08]"
           priority
@@ -70,6 +70,18 @@ export function HeroSection() {
             </Button>
           </a>
         </div>
+
+        {/* Under-CTA Natural Reassurance Points */}
+        {t.hero.trustPoints && t.hero.trustPoints.length > 0 && (
+          <div className="pt-2 sm:pt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-500 font-medium">
+            {t.hero.trustPoints.map((point, idx) => (
+              <span key={idx} className="flex items-center gap-1.5">
+                <Check className="w-4 h-4 text-emerald-600 stroke-[2.5] shrink-0" />
+                <span>{point}</span>
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Seamless bottom gradient transition to white */}

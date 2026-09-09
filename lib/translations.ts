@@ -13,6 +13,7 @@ export interface TranslationSchema {
     subtitle: string;
     ctaPrimary: string;
     ctaSecondary: string;
+    trustPoints: string[];
   };
   problem: {
     title: string;
@@ -155,6 +156,11 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
         "Bebas template kaku, tanpa ribet. Loading super cepat, terima beres domain + hosting, dan bisa kamu kelola sendiri dengan mudah.",
       ctaPrimary: "Chat WhatsApp Sekarang",
       ctaSecondary: "Lihat Paket Harga",
+      trustPoints: [
+        "Terima beres domain & cloud hosting",
+        "Dashboard mudah diedit sendiri",
+        "Garansi kendala teknis 7 hari",
+      ],
     },
     problem: {
       title: "Pernah Kecewa Bikin Website?",
@@ -464,6 +470,11 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
         "No rigid templates, zero hassle. Blazing-fast load times, fully turnkey with domain + hosting, and easy for you to manage anytime.",
       ctaPrimary: "Chat on WhatsApp Now",
       ctaSecondary: "View Pricing Plans",
+      trustPoints: [
+        "Turnkey domain & cloud hosting",
+        "Easy self-managed dashboard",
+        "7-day technical warranty",
+      ],
     },
     problem: {
       title: "Disappointed with Websites Before?",
