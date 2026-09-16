@@ -23,7 +23,7 @@ export function ProcessSection() {
   };
 
   return (
-    <section id="proses" className="py-20 lg:py-24 bg-white relative">
+    <section id="proses" className="py-20 lg:py-24 bg-[#F9F9F9] relative border-t border-slate-200/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center space-y-3 mb-12">
           <h2 className="text-2xl sm:text-[36px] lg:text-[40px] font-extrabold text-[#092734] tracking-tight leading-snug">

@@ -1,0 +1,297 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-09-16T06:46:50.850Z",
+  "hero": {
+    "h1Pre": {
+      "id": "Bikin Website Modern yang",
+      "en": "Build Modern Websites That Are"
+    },
+    "h1Highlight": {
+      "id": " Gampang Dikelola",
+      "en": " Effortless to Manage"
+    },
+    "h1Post": {
+      "id": " Sendiri",
+      "en": " Yourself"
+    },
+    "subtitle": {
+      "id": "Bebas template kaku, tanpa ribet. Loading super cepat, terima beres domain + hosting, dan bisa kamu kelola sendiri dengan mudah.",
+      "en": "No rigid templates, no hassle. Blazing fast loading, complete with domain & cloud hosting, fully editable on your own."
+    },
+    "bgImageUrl": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&auto=format&fit=crop&q=80",
+    "ctaPrimary": {
+      "id": "Chat WhatsApp Sekarang",
+      "en": "Chat WhatsApp Now"
+    },
+    "ctaSecondary": {
+      "id": "Lihat Portofolio & Harga",
+      "en": "View Portfolio & Pricing"
+    }
+  },
+  "contact": {
+    "whatsappNumber": "62881036657944",
+    "email": "gaweb.website@gmail.com",
+    "instagram": "@gaweb.website",
+    "location": "Malang, Jawa Timur, Indonesia",
+    "city": "Malang"
+  },
+  "portfolios": [
+    {
+      "id": "bromo-adventure",
+      "title": "Bromo Highland Adventure",
+      "category": "travel",
+      "categoryLabel": {
+        "id": "Tour & Wisata",
+        "en": "Tour & Travel"
+      },
+      "clientName": "PT Bromo Wisata Nusantara",
+      "description": {
+        "id": "Website tour & travel paket wisata Gunung Bromo dengan katalog trip interaktif, kalkulator harga otomatis, dan direct booking ke WhatsApp.",
+        "en": "Tour & travel website for Mount Bromo packages featuring interactive trip catalogs, auto price calculator, and direct WhatsApp booking."
+      },
+      "imageUrl": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=520&fit=crop&q=80",
+      "demoUrl": "https://gaweb.website/#demo",
+      "tags": [
+        "Next.js",
+        "Katalog Trip",
+        "WhatsApp Checkout",
+        "PageSpeed 99"
+      ],
+      "metrics": {
+        "pageSpeed": "99/100",
+        "loadTime": "0.6s",
+        "highlight": "Inquiry Naik 3x"
+      },
+      "featured": true,
+      "order": 1
+    },
+    {
+      "id": "senja-coffee",
+      "title": "Senja Artisan Coffee & Roastery",
+      "category": "umkm",
+      "categoryLabel": {
+        "id": "UMKM / Kuliner",
+        "en": "F&B / Coffee"
+      },
+      "clientName": "Senja Coffee Co.",
+      "description": {
+        "id": "Landing page estetik kafe & roastery dengan menu digital responsif, galeri foto suasana, dan integrasi Google Maps untuk navigasi instan pelanggan.",
+        "en": "Aesthetic coffee shop & roastery landing page with responsive digital menu, ambience gallery, and instant Google Maps integration."
+      },
+      "imageUrl": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=520&fit=crop&q=80",
+      "demoUrl": "https://gaweb.website/#demo",
+      "tags": [
+        "Tailwind CSS",
+        "Menu Digital",
+        "Maps Navigation",
+        "SEO Lokal"
+      ],
+      "metrics": {
+        "pageSpeed": "98/100",
+        "loadTime": "0.7s",
+        "highlight": "Kunjungan +55%"
+      },
+      "featured": true,
+      "order": 2
+    },
+    {
+      "id": "praditya-law",
+      "title": "Praditya & Partners Law Firm",
+      "category": "company-profile",
+      "categoryLabel": {
+        "id": "Company Profile",
+        "en": "Company Profile"
+      },
+      "clientName": "Praditya Legal Consultant",
+      "description": {
+        "id": "Company profile kantor advokat & konsultan hukum profesional dengan desain berwibawa, profil partner, publikasi artikel hukum, dan booking konsultasi.",
+        "en": "Professional company profile for legal advocate & consultant featuring prestigious branding, partner profiles, and consultation scheduling."
+      },
+      "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=520&fit=crop&q=80",
+      "demoUrl": "https://gaweb.website/#demo",
+      "tags": [
+        "Next.js",
+        "Legal Profile",
+        "SEO Authority",
+        "Clean Design"
+      ],
+      "metrics": {
+        "pageSpeed": "100/100",
+        "loadTime": "0.5s",
+        "highlight": "Kredibilitas Top"
+      },
+      "featured": true,
+      "order": 3
+    },
+    {
+      "id": "glowcare-clinic",
+      "title": "GlowCare Aesthetic Clinic",
+      "category": "landing-page",
+      "categoryLabel": {
+        "id": "Landing Page Jasa",
+        "en": "Service Landing Page"
+      },
+      "clientName": "GlowCare Medika",
+      "description": {
+        "id": "Landing page klinik kecantikan konversi tinggi dengan tabel perbandingan treatment, showcase testimoni before-after, dan tombol reservasi WhatsApp.",
+        "en": "High-conversion aesthetic clinic landing page with treatment comparison table, before-after testimonial showcase, and WhatsApp reservation."
+      },
+      "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=520&fit=crop&q=80",
+      "demoUrl": "https://gaweb.website/#demo",
+      "tags": [
+        "Conversion-Focused",
+        "Testimonial Grid",
+        "Fast Loading"
+      ],
+      "metrics": {
+        "pageSpeed": "99/100",
+        "loadTime": "0.7s",
+        "highlight": "Closing Rate 38%"
+      },
+      "featured": true,
+      "order": 4
+    }
+  ],
+  "pricing": [
+    {
+      "id": "starter",
+      "name": "Paket Promo Starter",
+      "badge": "Hemat 33%",
+      "isPopular": false,
+      "target": "Cocok untuk UMKM pemula, personal branding, atau promosi 1 produk utama.",
+      "originalPrice": "Rp 1.500.000",
+      "discountBadge": "Hemat 33%",
+      "priceDisplay": "Rp 999.000",
+      "timeline": "3–5 hari kerja",
+      "description": "Website 1 halaman (landing page) konversi tinggi yang ringkas, cepat, dan fokus menjual.",
+      "features": [
+        "1 Halaman Landing Page konversi tinggi",
+        "Desain modern, mobile-friendly & responsif",
+        "Domain (.com / .id) & Cloud Hosting 1 tahun",
+        "Dashboard admin mandiri (edit teks & foto sendiri)",
+        "Video panduan training admin 15 menit via Loom",
+        "Integrasi tombol WhatsApp & formulir kontak",
+        "Garansi perbaikan bug & error 7 hari"
+      ]
+    },
+    {
+      "id": "bisnis",
+      "name": "Paket Promo Bisnis",
+      "badge": "Paling Populer",
+      "isPopular": true,
+      "target": "Pilihan terbaik untuk UMKM berkembang, profil perusahaan & jasa profesional.",
+      "originalPrice": "Rp 2.800.000",
+      "discountBadge": "Hemat 28%",
+      "priceDisplay": "Rp 1.999.000",
+      "timeline": "5–7 hari kerja",
+      "description": "Website multi-halaman lengkap dan berwibawa untuk membangun kredibilitas bisnis.",
+      "features": [
+        "Semua fitur Paket Starter",
+        "3–5 Halaman (Beranda, Profil, Layanan, Kontak)",
+        "Optimasi Google SEO dasar (muncul di pencarian)",
+        "Integrasi Google Maps lokasi bisnis",
+        "Desain custom eksklusif sesuai warna brand",
+        "Dukungan prioritas via WhatsApp 1 bulan"
+      ]
+    },
+    {
+      "id": "custom-plus",
+      "name": "Paket Promo Custom Plus",
+      "badge": "Solusi Lengkap",
+      "isPopular": false,
+      "target": "Sangat ideal untuk biro tour & travel, katalog produk, atau rental mobil.",
+      "originalPrice": "Rp 3.800.000",
+      "discountBadge": "Hemat 26%",
+      "priceDisplay": "Rp 2.800.000",
+      "timeline": "6–8 hari kerja",
+      "description": "Website custom dengan fitur katalog dinamis untuk menampilkan banyak produk/paket wisata.",
+      "features": [
+        "Semua fitur Paket Bisnis",
+        "Katalog produk / paket wisata interaktif",
+        "Filter kategori & fitur pencarian produk",
+        "Tombol order langsung ke WhatsApp per produk",
+        "Struktur SEO produk lebih optimal",
+        "Training intensif pengelolaan katalog"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": {
+        "id": "Apakah saya benar-benar bisa mengedit isi website sendiri?",
+        "en": "Can I really edit the website content on my own?"
+      },
+      "answer": {
+        "id": "Bisa banget! Kami menyediakan dashboard admin khusus yang sangat mudah digunakan (seperti mengetik di status HP atau mengisi formulir biasa). Anda bisa mengganti teks, harga promo, nomor WhatsApp, hingga foto kapan saja tanpa perlu bantuan koding. Kami juga menyertakan video panduan singkat 15 menit agar Anda langsung mahir.",
+        "en": "Absolutely! We provide a dedicated admin dashboard that is super easy to use (just like updating your social media status or filling a simple form). You can change text, promo prices, WhatsApp numbers, and photos anytime without touching code. We also include a 15-minute video tutorial so you become proficient immediately."
+      }
+    },
+    {
+      "id": "faq-2",
+      "question": {
+        "id": "Mengapa website ini tidak memakai WordPress?",
+        "en": "Why doesn't this website use WordPress?"
+      },
+      "answer": {
+        "id": "Website WordPress sering kali lemot karena tumpukan puluhan plugin pihak ketiga, rawan terkena malware jika plugin tidak diperbarui, dan membingungkan untuk diedit bagi orang awam. Kami membangun website Anda dengan teknologi modern (Next.js & Cloud) sehingga website dijamin super ngebut (skor PageSpeed 90+), jauh lebih aman, dan bebas biaya langganan plugin tahunan yang mahal.",
+        "en": "WordPress websites often become slow due to dozens of third-party plugins, vulnerable to malware if not updated, and confusing to edit for non-tech owners. We build your website using modern cloud tech (Next.js) ensuring lightning-fast load times (PageSpeed 90+), top-tier security, and zero expensive yearly plugin renewals."
+      }
+    },
+    {
+      "id": "faq-3",
+      "question": {
+        "id": "Apakah harga di atas sudah terima beres dengan domain dan hosting?",
+        "en": "Do the prices include domain and cloud hosting ready to use?"
+      },
+      "answer": {
+        "id": "Sudah terima beres! Semua paket sudah termasuk pendaftaran nama domain resmi (.com / .id) dan cloud hosting super cepat selama 1 tahun penuh. Anda tidak perlu pusing memikirkan teknis server sama sekali.",
+        "en": "Yes, everything is all-inclusive! All packages include domain registration (.com / .id) and 1 year of ultra-fast cloud hosting. You don't have to worry about server technicalities at all."
+      }
+    }
+  ],
+  "mediaLibrary": [
+    {
+      "id": "img-1789541210850",
+      "name": "Mengenal-Rasisme-Penyebab-Ciri-dan-Cara-Mengatasinya.png",
+      "url": "/images/uploads/1789541210847-mengenal-rasisme-penyebab-ciri.png",
+      "category": "uploads",
+      "uploadedAt": "2026-09-16T06:46:50.850Z"
+    },
+    {
+      "id": "img-hero-default",
+      "name": "Hero Architecture Workspace",
+      "url": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&auto=format&fit=crop&q=80",
+      "category": "hero",
+      "uploadedAt": "2026-09-16T10:00:00.000Z"
+    },
+    {
+      "id": "img-showcase-travel",
+      "name": "Bromo Adventure Travel",
+      "url": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=520&fit=crop&q=80",
+      "category": "showcase",
+      "uploadedAt": "2026-09-16T10:00:00.000Z"
+    },
+    {
+      "id": "img-showcase-coffee",
+      "name": "Senja Coffee Artisan",
+      "url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=520&fit=crop&q=80",
+      "category": "showcase",
+      "uploadedAt": "2026-09-16T10:00:00.000Z"
+    },
+    {
+      "id": "img-showcase-law",
+      "name": "Corporate Law Building",
+      "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=520&fit=crop&q=80",
+      "category": "showcase",
+      "uploadedAt": "2026-09-16T10:00:00.000Z"
+    },
+    {
+      "id": "img-showcase-clinic",
+      "name": "Modern Clinic Room",
+      "url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=520&fit=crop&q=80",
+      "category": "showcase",
+      "uploadedAt": "2026-09-16T10:00:00.000Z"
+    }
+  ]
+}

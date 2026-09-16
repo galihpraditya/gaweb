@@ -40,7 +40,7 @@ export function QuickInquirySection() {
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-white relative">
+    <section className="py-20 lg:py-24 bg-[#F9F9F9] relative border-t border-slate-200/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center space-y-3 mb-10">
           <h2 className="text-2xl sm:text-[36px] lg:text-[40px] font-extrabold text-[#092734] tracking-tight leading-snug">
@@ -51,7 +51,7 @@ export function QuickInquirySection() {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto bg-[#F9F9F9] rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-soft">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>

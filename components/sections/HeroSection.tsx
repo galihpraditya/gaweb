@@ -6,16 +6,30 @@ import { getWhatsAppUrl } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { MessageCircle, ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export function HeroSection() {
   const { t, language } = useLanguage();
+  const { content } = useSiteContent();
+
+  const heroData = content?.hero;
+  const bgImage =
+    heroData?.bgImageUrl ||
+    "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&auto=format&fit=crop&q=80";
+
+  const h1Pre = heroData?.h1Pre?.[language] || t.hero.h1Pre;
+  const h1Highlight = heroData?.h1Highlight?.[language] || t.hero.h1Highlight;
+  const h1Post = heroData?.h1Post?.[language] || t.hero.h1Post;
+  const subtitle = heroData?.subtitle?.[language] || t.hero.subtitle;
+  const ctaPrimary = heroData?.ctaPrimary?.[language] || t.hero.ctaPrimary;
+  const ctaSecondary = heroData?.ctaSecondary?.[language] || t.hero.ctaSecondary;
 
   return (
     <section className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center pt-24 pb-28 lg:pt-32 lg:pb-36 overflow-hidden bg-[#F9F9F9] hero-bg">
-      {/* Background Architectural/Workspace Texture - Clean, No Cut-Off People */}
+      {/* Background Architectural/Workspace Texture */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&auto=format&fit=crop&q=80"
+          src={bgImage}
           alt="gaweb - Jasa Pembuatan Website Custom Modern, Cepat & Aman"
           fill
           className="object-cover photo-natural opacity-[0.08]"
@@ -29,12 +43,12 @@ export function HeroSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6 sm:space-y-8 my-auto">
         <div className="space-y-4 max-w-3xl mx-auto">
           <h1 className="text-[36px] sm:text-[50px] lg:text-[60px] font-extrabold text-[#092734] leading-[1.14] tracking-tight">
-            {t.hero.h1Pre}
-            <span className="text-[#004F72] block sm:inline">{t.hero.h1Highlight}</span>
-            {t.hero.h1Post}
+            {h1Pre}
+            <span className="text-[#004F72] block sm:inline">{h1Highlight}</span>
+            {h1Post}
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-            {t.hero.subtitle}
+            {subtitle}
           </p>
         </div>
 

@@ -5,10 +5,27 @@ import { getWhatsAppUrl } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { Check, Clock, ChevronDown, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export function PricingSection() {
   const { t, language } = useLanguage();
+  const { content } = useSiteContent();
   const [expandedPlans, setExpandedPlans] = useState<Record<string, boolean>>({});
+
+  const dynamicPricing = content?.pricing;
+  const plans = t.pricing.plans.map((p) => {
+    const override = dynamicPricing?.find((dp) => dp.id === p.id);
+    if (!override || language !== "id") return p;
+    return {
+      ...p,
+      name: override.name || p.name,
+      priceDisplay: override.priceDisplay || p.priceDisplay,
+      originalPrice: override.originalPrice || p.originalPrice,
+      discountBadge: override.discountBadge || p.discountBadge,
+      timeline: override.timeline || p.timeline,
+      features: override.features?.length ? override.features : p.features,
+    };
+  });
 
   const toggleExpand = (planId: string) => {
     setExpandedPlans((prev) => ({
@@ -32,7 +49,7 @@ export function PricingSection() {
 
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
-          {t.pricing.plans.map((plan) => {
+          {plans.map((plan) => {
             const isExpanded = expandedPlans[plan.id];
             const visibleFeatures = isExpanded ? plan.features : plan.features.slice(0, 5);
 

@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { BRAND, SEO_CONFIG, SITE_URL } from "@/lib/constants";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { SiteContentProvider } from "@/context/SiteContentContext";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -82,6 +83,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
+  manifest: "/manifest.json",
   category: "technology",
   classification: "Jasa Pembuatan Website Custom & Landing Page",
 };
@@ -97,7 +99,9 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className="min-h-screen bg-[#F9F9F9] text-[#092734] font-sans antialiased selection:bg-[#004F72] selection:text-white">
-        <LanguageProvider>{children}</LanguageProvider>
+        <SiteContentProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </SiteContentProvider>
       </body>
     </html>
   );

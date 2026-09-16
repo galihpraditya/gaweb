@@ -1,0 +1,21 @@
+{
+  "name": "gaweb - Jasa Pembuatan Website Custom",
+  "short_name": "gaweb",
+  "description": "Jasa pembuatan website custom, landing page & company profile super cepat (PageSpeed 90+), aman & terima beres domain + hosting + dashboard admin mandiri. Bukan WordPress! Mulai Rp 999rb.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F9F9",
+  "theme_color": "#004F72",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

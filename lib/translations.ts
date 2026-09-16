@@ -40,6 +40,21 @@ export interface TranslationSchema {
     }[];
     footerText: string;
   };
+  portfolio: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    filterAll: string;
+    filterLanding: string;
+    filterCompany: string;
+    filterTravel: string;
+    filterUmkm: string;
+    viewLiveDemo: string;
+    orderSimilar: string;
+    metricsTitle: string;
+    emptyTitle: string;
+    emptyDesc: string;
+  };
   pricing: {
     title: string;
     subtitle: string;
@@ -140,8 +155,9 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
       links: [
         { label: "Solusi", href: "#layanan" },
         { label: "Keunggulan", href: "#keunggulan" },
-        { label: "Harga Paket", href: "#harga" },
+        { label: "Portofolio", href: "#portofolio" },
         { label: "Demo Admin", href: "#demo" },
+        { label: "Harga Paket", href: "#harga" },
         { label: "Cara Pesan", href: "#proses" },
         { label: "Tanya Jawab", href: "#faq" },
       ],
@@ -229,6 +245,22 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
         },
       ],
       footerText: "Dibangun dengan Custom Code Modern • Bebas Template Berat",
+    },
+    portfolio: {
+      badge: "Karya & Portofolio",
+      title: "Hasil Website Nyata yang Telah Kami Kerjakan",
+      subtitle:
+        "Contoh website yang kami bangun dengan custom code. Cepat saat dibuka, rapi di semua layar HP, dan gampang kamu kelola sendiri.",
+      filterAll: "Semua Proyek",
+      filterLanding: "Landing Page",
+      filterCompany: "Company Profile",
+      filterTravel: "Tour & Wisata",
+      filterUmkm: "UMKM / Kuliner",
+      viewLiveDemo: "Lihat Demo",
+      orderSimilar: "Pesan Web Ini",
+      metricsTitle: "Kinerja Teruji",
+      emptyTitle: "Belum ada proyek di kategori ini",
+      emptyDesc: "Pilih kategori lain atau tambahkan proyek baru dari panel admin.",
     },
     pricing: {
       title: "Pilihan Paket Website Terima Beres",
@@ -454,8 +486,9 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
       links: [
         { label: "Solutions", href: "#layanan" },
         { label: "Why Us", href: "#keunggulan" },
-        { label: "Pricing", href: "#harga" },
+        { label: "Portfolio", href: "#portofolio" },
         { label: "Live Demo", href: "#demo" },
+        { label: "Pricing", href: "#harga" },
         { label: "Process", href: "#proses" },
         { label: "FAQ", href: "#faq" },
       ],
@@ -543,6 +576,22 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
         },
       ],
       footerText: "Built with Modern Custom Code • Free of Bloated Templates",
+    },
+    portfolio: {
+      badge: "Featured Work & Portfolio",
+      title: "Real Client Websites We Have Built",
+      subtitle:
+        "Sample websites built with modern custom code. Fast-loading, fully mobile-friendly, and easy for you to manage yourself.",
+      filterAll: "All Projects",
+      filterLanding: "Landing Page",
+      filterCompany: "Company Profile",
+      filterTravel: "Tour & Travel",
+      filterUmkm: "F&B / Business",
+      viewLiveDemo: "Live Demo",
+      orderSimilar: "Order Similar",
+      metricsTitle: "Proven Metrics",
+      emptyTitle: "No projects found in this category",
+      emptyDesc: "Select another category or add a new project from the admin dashboard.",
     },
     pricing: {
       title: "Turnkey Website Packages",

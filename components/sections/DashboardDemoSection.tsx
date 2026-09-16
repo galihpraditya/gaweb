@@ -8,9 +8,7 @@ import {
   Wand2,
   Upload,
   ImageIcon,
-  EyeOff,
   MessageCircle,
-  Sparkles,
   Store,
   Smartphone,
 } from "lucide-react";
@@ -45,12 +43,10 @@ export function DashboardDemoSection() {
     language === "en" ? "Special Coffee & Mountain Tour Promo" : "Promo Wisata Bromo & Kopi Nusantara"
   );
   const [price, setPrice] = useState(language === "en" ? "$25.00" : "Rp 350.000");
-  const [isLive, setIsLive] = useState(true);
   const [image, setImage] = useState(PRESET_IMAGES[1].url);
 
   const [savedHeadline, setSavedHeadline] = useState(headline);
   const [savedPrice, setSavedPrice] = useState(price);
-  const [savedIsLive, setSavedIsLive] = useState(true);
   const [savedImage, setSavedImage] = useState(PRESET_IMAGES[1].url);
 
   const [showToast, setShowToast] = useState(false);
@@ -88,7 +84,6 @@ export function DashboardDemoSection() {
     setTimeout(() => {
       setSavedHeadline(headline);
       setSavedPrice(price);
-      setSavedIsLive(isLive);
       setSavedImage(image);
       setIsSaving(false);
       setShowToast(true);
@@ -176,49 +171,17 @@ export function DashboardDemoSection() {
                     />
                   </div>
 
-                  {/* Price & Interactive Live Status */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="text-xs font-bold text-[#092734] block mb-1.5">
-                        {t.dashboard.priceLabel}
-                      </label>
-                      <input
-                        type="text"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 focus:border-[#004F72] focus:bg-white rounded-xl px-3.5 py-2.5 text-sm font-bold text-[#004F72] focus:outline-none focus:ring-2 focus:ring-[#004F72]/20 transition-all shadow-2xs"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs font-bold text-[#092734] block mb-1.5 flex items-center justify-between">
-                        <span>{t.dashboard.statusLabel}</span>
-                        <span className="text-[10px] text-slate-400 font-normal">
-                          {language === "en" ? "Click to toggle" : "Klik utk ganti"}
-                        </span>
-                      </label>
-                      <button
-                        type="button"
-                        onClick={() => setIsLive(!isLive)}
-                        className={`w-full rounded-xl px-3 py-2.5 text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
-                          isLive
-                            ? "bg-emerald-50 border-emerald-300 text-emerald-800 hover:bg-emerald-100"
-                            : "bg-slate-100 border-slate-300 text-slate-600 hover:bg-slate-200"
-                        }`}
-                        title={language === "en" ? "Toggle Live/Draft" : "Ubah status Siap Tayang / Draft"}
-                      >
-                        {isLive ? (
-                          <>
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                            <span className="truncate">{t.dashboard.readyLabel}</span>
-                          </>
-                        ) : (
-                          <>
-                            <EyeOff className="w-4 h-4 text-slate-500 shrink-0" />
-                            <span className="truncate">{t.dashboard.draftLabel}</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
+                  {/* Price Input */}
+                  <div>
+                    <label className="text-xs font-bold text-[#092734] block mb-1.5">
+                      {t.dashboard.priceLabel}
+                    </label>
+                    <input
+                      type="text"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-300 focus:border-[#004F72] focus:bg-white rounded-xl px-3.5 py-2.5 text-sm font-bold text-[#004F72] focus:outline-none focus:ring-2 focus:ring-[#004F72]/20 transition-all shadow-2xs"
+                    />
                   </div>
 
                   {/* Option to Change / Upload Image */}
@@ -356,34 +319,14 @@ export function DashboardDemoSection() {
                     </div>
                   </div>
 
-                  {/* Photo Display with Status Badges (No Duplicate Title) */}
+                  {/* Photo Display (Clean preview without confusing badges) */}
                   <div className="aspect-[16/9] relative overflow-hidden bg-slate-100">
                     <img
                       src={savedImage}
                       alt="Preview showcase"
                       className="w-full h-full object-cover photo-natural transition-all duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
-
-                    {/* Top Overlay Badges */}
-                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                      {savedIsLive ? (
-                        <span className="text-[10px] font-extrabold bg-emerald-600/95 backdrop-blur-xs text-white px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                          <span>{t.dashboard.readyLabel}</span>
-                        </span>
-                      ) : (
-                        <span className="text-[10px] font-extrabold bg-slate-800/95 backdrop-blur-xs text-white px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1.5">
-                          <EyeOff className="w-3 h-3 text-slate-300" />
-                          <span>{t.dashboard.draftLabel}</span>
-                        </span>
-                      )}
-
-                      <span className="text-[10px] font-bold bg-[#004F72]/90 backdrop-blur-xs text-white px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-amber-300" />
-                        <span>Featured</span>
-                      </span>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent" />
                   </div>
 
                   {/* Content Strip (Headline, Price, & Action Button) */}

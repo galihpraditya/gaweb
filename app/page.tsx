@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { DifferentiatorSection } from "@/components/sections/DifferentiatorSection";
+import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { DashboardDemoSection } from "@/components/sections/DashboardDemoSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
@@ -22,14 +23,17 @@ export default function Home() {
         {/* 3. Problem vs Solution Comparison */}
         <ProblemSection />
 
-        {/* 5. Kenapa Tanpa WordPress (Differentiators) */}
+        {/* 4. Kenapa Tanpa WordPress (Differentiators) */}
         <DifferentiatorSection />
 
-        {/* 6. Paket Layanan & Harga (Pricing Cards) */}
-        <PricingSection />
+        {/* 5. Portofolio Hasil Website Nyata */}
+        <PortfolioSection />
 
-        {/* 7. Demo Dashboard Admin (Cara Kelola Sendiri) */}
+        {/* 6. Demo Dashboard Admin (Buktikan Gampang Kelola Sendiri) */}
         <DashboardDemoSection />
+
+        {/* 7. Paket Layanan & Harga (Pricing Cards) */}
+        <PricingSection />
 
         {/* 8. Proses Kerja 4 Langkah Transparan */}
         <ProcessSection />

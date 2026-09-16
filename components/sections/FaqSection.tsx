@@ -4,17 +4,27 @@ import React, { useState } from "react";
 import { getWhatsAppUrl } from "@/lib/constants";
 import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export function FaqSection() {
   const { t, language } = useLanguage();
+  const { content } = useSiteContent();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const faqItems =
+    content?.faqs && content.faqs.length > 0 && language === "id"
+      ? content.faqs.map((f) => ({
+          question: f.question[language] || f.question.id,
+          answer: f.answer[language] || f.answer.id,
+        }))
+      : t.faq.items;
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-24 bg-[#F9F9F9] relative">
+    <section id="faq" className="py-20 lg:py-24 bg-white relative border-t border-slate-200/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-2xl mx-auto text-center space-y-3 mb-12">
@@ -28,15 +38,15 @@ export function FaqSection() {
 
         {/* Accordion List */}
         <div className="max-w-3xl mx-auto space-y-3">
-          {t.faq.items.map((faq, idx) => {
+          {faqItems.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
                 className={`rounded-2xl border transition-colors duration-200 overflow-hidden ${
                   isOpen
-                    ? "border-[#004F72] bg-white shadow-2xs"
-                    : "border-slate-200/80 bg-white hover:border-slate-300"
+                    ? "border-[#004F72] bg-white shadow-xs"
+                    : "border-slate-200/80 bg-slate-50/50 hover:bg-slate-50 hover:border-slate-300"
                 }`}
               >
                 <button
@@ -68,7 +78,7 @@ export function FaqSection() {
         </div>
 
         {/* Unanswered Question Prompt */}
-        <div className="mt-12 max-w-3xl mx-auto bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div className="mt-12 max-w-3xl mx-auto bg-slate-50/80 rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-5">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="text-base font-bold text-[#092734]">
               {t.faq.unansweredTitle}
