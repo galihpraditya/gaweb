@@ -109,7 +109,7 @@ export function MediaTab({
                 : "Klik di sini untuk memilih file dari komputer / HP"}
             </p>
             <p className="text-[11px] text-slate-400">
-              Format: PNG, JPG, WebP, SVG, GIF (Maksimal 2MB disarankan)
+              Format: PNG, JPG, WebP, SVG (Otomatis dikompresi ke WebP sebelum disimpan ke Cloudflare R2)
             </p>
           </div>
         </div>

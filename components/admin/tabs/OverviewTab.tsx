@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FolderKanban,
   ImageIcon,
@@ -17,6 +18,9 @@ import {
   CheckCircle2,
   Clock,
   Sparkles,
+  Cloud,
+  ChevronRight,
+  ExternalLink,
 } from "lucide-react";
 import { SiteContentSchema } from "@/lib/types/content";
 import { AdminNavSection } from "../AdminSidebar";
@@ -44,46 +48,64 @@ export function OverviewTab({
 
   const lastUpdatedText = formData.lastUpdated
     ? new Date(formData.lastUpdated).toLocaleString("id-ID", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    })
+        dateStyle: "medium",
+        timeStyle: "short",
+      })
     : "Baru saja";
+
+  const heroHeadline =
+    `${formData.hero?.h1Pre?.id || ""} ${formData.hero?.h1Highlight?.id || ""} ${formData.hero?.h1Post?.id || ""}`.trim() ||
+    "Solusi Website Modern Tanpa WordPress";
+
+  const latestPortfolios = (formData.portfolios || []).slice(0, 4);
 
   return (
     <div className="space-y-6">
-      {/* Welcome & System Summary Banner */}
-      <div className="bg-gradient-to-br from-[#092734] to-[#004F72] rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden">
-        <div className="relative z-10 max-w-2xl space-y-3">
+      {/* 1. Welcome & System Status Banner */}
+      <div className="bg-gradient-to-br from-[#092734] via-[#092734] to-[#004F72] rounded-3xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden">
+        {/* Subtle Decorative Background Glow */}
+        <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-[#004F72]/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute left-1/2 -top-12 w-48 h-48 bg-sky-400/10 rounded-full blur-2xl pointer-events-none" />
 
-          <h2 className="text-xl sm:text-2xl font-black tracking-tight leading-snug">
-            Selamat Datang di Panel Pengelolaan Website gaweb
+        <div className="relative z-10 max-w-3xl space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-sky-200 font-medium">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <span>gaweb Control Center • v2.0</span>
+          </div>
+
+          <h2 className="text-xl sm:text-3xl font-black tracking-tight leading-tight">
+            Selamat Datang di Panel Pengelolaan gaweb
           </h2>
 
           <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
-            Kelola portofolio showcase, media gambar, teks hero, paket harga,
-            dan integrasi WhatsApp. Seluruh data disimpan dan disinkronkan langsung
-            ke landing page Anda.
+            Kelola portofolio showcase, pustaka aset gambar via Cloudflare R2,
+            teks hero bilingual, paket harga, dan kontak WhatsApp resmi. Seluruh
+            perubahan tersinkronisasi instan ke landing page.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-300">
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-sky-300" />
-              <span>Pembaruan terakhir: {lastUpdatedText}</span>
+          <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-slate-300">
+            <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-sm">
+              <Clock className="w-3.5 h-3.5 text-sky-300" />
+              <span>Update: {lastUpdatedText}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-sm">
+              <Cloud className="w-3.5 h-3.5 text-cyan-300" />
+              <span>Cloudflare R2 Ready</span>
+            </div>
+            <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-sm">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
               <span>Sesi Admin Terproteksi</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Quick Metrics Grid */}
+      {/* 2. Quick Metrics Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Portofolio */}
         <div
           onClick={() => onNavigate("portfolios")}
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs hover:border-[#004F72] hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
+          className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-[#004F72] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500">Portofolio</span>
@@ -95,8 +117,9 @@ export function OverviewTab({
             <div className="text-2xl sm:text-3xl font-black text-[#092734]">
               {totalPortfolios}
             </div>
-            <div className="text-[11px] text-slate-400 mt-0.5">
-              Semua proyek aktif
+            <div className="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+              <span>{featuredPortfolios} unggulan</span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#004F72] group-hover:translate-x-0.5 transition-all" />
             </div>
           </div>
         </div>
@@ -104,7 +127,7 @@ export function OverviewTab({
         {/* Media Library */}
         <div
           onClick={() => onNavigate("media")}
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs hover:border-[#004F72] hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
+          className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-[#004F72] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500">Aset Media</span>
@@ -116,8 +139,9 @@ export function OverviewTab({
             <div className="text-2xl sm:text-3xl font-black text-[#092734]">
               {totalMedia}
             </div>
-            <div className="text-[11px] text-slate-400 mt-0.5">
-              Gambar & mockup tersimpan
+            <div className="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+              <span>Cloudflare R2 CDN</span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#004F72] group-hover:translate-x-0.5 transition-all" />
             </div>
           </div>
         </div>
@@ -125,7 +149,7 @@ export function OverviewTab({
         {/* Paket Harga */}
         <div
           onClick={() => onNavigate("pricing")}
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs hover:border-[#004F72] hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
+          className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-[#004F72] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500">Paket Layanan</span>
@@ -137,8 +161,9 @@ export function OverviewTab({
             <div className="text-2xl sm:text-3xl font-black text-[#092734]">
               {totalPricing}
             </div>
-            <div className="text-[11px] text-slate-400 mt-0.5">
-              Paket harga aktif
+            <div className="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+              <span>Paket harga aktif</span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#004F72] group-hover:translate-x-0.5 transition-all" />
             </div>
           </div>
         </div>
@@ -146,7 +171,7 @@ export function OverviewTab({
         {/* WhatsApp & Tanya Jawab */}
         <div
           onClick={() => onNavigate("content")}
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs hover:border-[#004F72] hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
+          className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-[#004F72] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500">WhatsApp Resmi</span>
@@ -158,16 +183,24 @@ export function OverviewTab({
             <div className="text-base sm:text-lg font-black text-[#092734] truncate">
               +{waNumber}
             </div>
-            <div className="text-[11px] text-slate-400 mt-0.5">
-              {totalFaqs} tanya-jawab FAQ
+            <div className="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+              <span>{totalFaqs} tanya jawab FAQ</span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#004F72] group-hover:translate-x-0.5 transition-all" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Quick Action Shortcuts */}
-      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
-        <h3 className="text-sm font-bold text-[#092734]">Tindakan Cepat</h3>
+      {/* 3. Quick Action Shortcuts */}
+      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-bold text-[#092734]">
+            Tindakan Cepat (Quick Actions)
+          </h3>
+          <span className="text-[11px] text-slate-400 font-medium">
+            Shortcut menu praktis
+          </span>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <button
@@ -179,8 +212,12 @@ export function OverviewTab({
               <Plus className="w-4 h-4" />
             </div>
             <div className="truncate">
-              <div className="text-xs font-bold text-[#092734]">Tambah Portofolio</div>
-              <div className="text-[10px] text-slate-500">Upload proyek baru</div>
+              <div className="text-xs font-bold text-[#092734]">
+                Tambah Portofolio
+              </div>
+              <div className="text-[10px] text-slate-500 truncate">
+                Showcase proyek baru
+              </div>
             </div>
           </button>
 
@@ -193,8 +230,12 @@ export function OverviewTab({
               <UploadCloud className="w-4 h-4" />
             </div>
             <div className="truncate">
-              <div className="text-xs font-bold text-[#092734]">Unggah Gambar</div>
-              <div className="text-[10px] text-slate-500">Pustaka aset media</div>
+              <div className="text-xs font-bold text-[#092734]">
+                Unggah Media
+              </div>
+              <div className="text-[10px] text-slate-500 truncate">
+                Simpan ke Cloudflare R2
+              </div>
             </div>
           </button>
 
@@ -207,8 +248,12 @@ export function OverviewTab({
               <FileDown className="w-4 h-4" />
             </div>
             <div className="truncate">
-              <div className="text-xs font-bold text-[#092734]">Download Backup</div>
-              <div className="text-[10px] text-slate-500">Simpan site-content.json</div>
+              <div className="text-xs font-bold text-[#092734]">
+                Download Backup
+              </div>
+              <div className="text-[10px] text-slate-500 truncate">
+                File site-content.json
+              </div>
             </div>
           </button>
 
@@ -217,28 +262,135 @@ export function OverviewTab({
             target="_blank"
             className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-slate-400 hover:bg-slate-50 text-left transition-all group"
           >
-            <div className="w-9 h-9 rounded-lg bg-slate-800 text-white flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
+            <div className="w-9 h-9 rounded-lg bg-[#092734] text-white flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
               <Globe className="w-4 h-4" />
             </div>
             <div className="truncate">
               <div className="text-xs font-bold text-[#092734] flex items-center gap-1">
                 <span>Preview Website</span>
-                <ArrowUpRight className="w-3 h-3 text-slate-400" />
+                <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover:text-[#004F72]" />
               </div>
-              <div className="text-[10px] text-slate-500">Buka live di tab baru</div>
+              <div className="text-[10px] text-slate-500 truncate">
+                Buka live di tab baru
+              </div>
             </div>
           </Link>
         </div>
       </div>
 
-      {/* Guide Note */}
-      <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+      {/* 4. Live Content Snapshot & Recent Showcases */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Left: Live Content Info */}
+        <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4 lg:col-span-1">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+              Snapshot Konten Aktif
+            </h3>
+            <button
+              onClick={() => onNavigate("content")}
+              className="text-xs text-[#004F72] font-bold hover:underline inline-flex items-center gap-1 cursor-pointer"
+            >
+              <span>Edit</span>
+              <ChevronRight className="w-3 h-3" />
+            </button>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <span className="text-[10px] font-bold uppercase text-slate-400">
+                Headline Hero
+              </span>
+              <p className="text-xs font-semibold text-[#092734] mt-0.5 line-clamp-2 leading-relaxed">
+                {heroHeadline}
+              </p>
+            </div>
+
+            <div>
+              <span className="text-[10px] font-bold uppercase text-slate-400">
+                WhatsApp Penerima
+              </span>
+              <p className="text-xs font-bold text-emerald-600 mt-0.5">
+                +{waNumber}
+              </p>
+            </div>
+
+            <div>
+              <span className="text-[10px] font-bold uppercase text-slate-400">
+                Paket Layanan Terdaftar
+              </span>
+              <div className="flex flex-wrap gap-1.5 mt-1">
+                {(formData.pricing || []).map((p) => (
+                  <span
+                    key={p.id}
+                    className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-slate-100 text-slate-700"
+                  >
+                    {typeof p.name === "string" ? p.name : p.name?.id || p.id}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Recent Portfolios Preview */}
+        <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4 lg:col-span-2">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+              Portofolio Terbaru di Landing Page
+            </h3>
+            <button
+              onClick={() => onNavigate("portfolios")}
+              className="text-xs text-[#004F72] font-bold hover:underline inline-flex items-center gap-1 cursor-pointer"
+            >
+              <span>Lihat Semua ({totalPortfolios})</span>
+              <ChevronRight className="w-3 h-3" />
+            </button>
+          </div>
+
+          {latestPortfolios.length === 0 ? (
+            <div className="text-center py-6 text-xs text-slate-400">
+              Belum ada portofolio yang ditambahkan.
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {latestPortfolios.map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => onNavigate("portfolios")}
+                  className="group rounded-xl border border-slate-200 overflow-hidden hover:border-[#004F72] transition-all cursor-pointer bg-slate-50 flex flex-col"
+                >
+                  <div className="relative aspect-[16/10] w-full bg-slate-200">
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-200"
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                    />
+                  </div>
+                  <div className="p-2.5 flex-1 flex flex-col justify-between">
+                    <div className="font-bold text-xs text-[#092734] truncate">
+                      {item.title}
+                    </div>
+                    <div className="text-[10px] text-slate-500 truncate mt-0.5">
+                      {item.clientName}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 5. Cloudflare & Vercel Sync Informational Banner */}
+      <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/90 space-y-2">
         <div className="flex items-center gap-2 text-xs font-bold text-[#092734]">
           <CheckCircle2 className="w-4 h-4 text-[#004F72]" />
-          <span>Informasi Penyimpanan & Sinkronisasi Hosting</span>
+          <span>Informasi Penyimpanan & Integrasi Cloudflare R2</span>
         </div>
         <p className="text-xs text-slate-600 leading-relaxed">
-          Setiap kali Anda menekan tombol <strong>Simpan Perubahan</strong> (atau shortcut <code>Ctrl+S</code>), data langsung disimpan ke file repository lokal (<code>data/site-content.json</code>) dan aktif di sesi browser. Untuk penyimpanan permanen di Vercel, cukup unduh file JSON dari tab <strong>SEO & Backup</strong> lalu commit &amp; push ke repositori GitHub Anda.
+          Semua file gambar kini otomatis dikompresi sebelum diunggah langsung ke <strong>Cloudflare R2 Object Storage</strong> yang cepat dan aman. Perubahan teks dan struktur disimpan di <code>data/site-content.json</code>. Tekan tombol <strong>Simpan</strong> (atau <code>Ctrl+S</code>) di pojok kanan atas untuk menyimpan perubahan Anda kapan saja.
         </p>
       </div>
     </div>

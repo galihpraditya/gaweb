@@ -64,7 +64,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
           onOpenMobileSidebar={() => setIsMobileSidebarOpen(true)}
         />
 
-        <main className="p-4 sm:p-6 lg:p-8 max-w-5xl w-full mx-auto space-y-6 flex-1">
+        <main className="p-4 sm:p-6 lg:p-8 max-w-6xl w-full mx-auto space-y-6 flex-1">
           {children}
         </main>
       </div>
