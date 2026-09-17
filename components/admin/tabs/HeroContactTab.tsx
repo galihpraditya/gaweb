@@ -75,9 +75,6 @@ export function HeroContactTab({
               Headline, sorotan warna, deskripsi, dan tombol CTA yang pertama kali dilihat pengunjung.
             </p>
           </div>
-          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-lg bg-[#004F72]/10 text-[#004F72] border border-[#004F72]/20">
-            Bahasa Editor: {editorLang === "id" ? "🇮🇩 Indonesia" : "🇬🇧 English"}
-          </span>
         </div>
 
         {/* H1 Row (Pre + Highlight + Post) */}

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-17T03:20:58.504Z",
+  "lastUpdated": "2026-09-17T09:24:12.415Z",
   "hero": {
     "h1Pre": {
       "id": "Bikin Website Modern yang",
@@ -49,8 +49,8 @@
         "id": "Website tour & travel paket wisata Gunung Bromo dengan katalog trip interaktif, kalkulator harga otomatis, dan direct booking ke WhatsApp.",
         "en": "Tour & travel website for Mount Bromo packages featuring interactive trip catalogs, auto price calculator, and direct WhatsApp booking."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=520&fit=crop&q=80",
-      "demoUrl": "https://gaweb.website/#demo",
+      "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636904926-screenshot-2026-09-16-133809.webp",
+      "demoUrl": "https://docurent.gaweb.website",
       "tags": [
         "Next.js",
         "Katalog Trip",
@@ -78,8 +78,8 @@
         "id": "Landing page estetik kafe & roastery dengan menu digital responsif, galeri foto suasana, dan integrasi Google Maps untuk navigasi instan pelanggan.",
         "en": "Aesthetic coffee shop & roastery landing page with responsive digital menu, ambience gallery, and instant Google Maps integration."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=520&fit=crop&q=80",
-      "demoUrl": "https://gaweb.website/#demo",
+      "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636930903-screenshot-2026-09-17-114105.webp",
+      "demoUrl": "https://villa.gaweb.website",
       "tags": [
         "Tailwind CSS",
         "Menu Digital",
@@ -107,8 +107,8 @@
         "id": "Company profile kantor advokat & konsultan hukum profesional dengan desain berwibawa, profil partner, publikasi artikel hukum, dan booking konsultasi.",
         "en": "Professional company profile for legal advocate & consultant featuring prestigious branding, partner profiles, and consultation scheduling."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=520&fit=crop&q=80",
-      "demoUrl": "https://gaweb.website/#demo",
+      "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636961102-screenshot-2026-09-17-153524.webp",
+      "demoUrl": "https://cafe.gaweb.website",
       "tags": [
         "Next.js",
         "Legal Profile",
@@ -136,8 +136,8 @@
         "id": "Landing page klinik kecantikan konversi tinggi dengan tabel perbandingan treatment, showcase testimoni before-after, dan tombol reservasi WhatsApp.",
         "en": "High-conversion aesthetic clinic landing page with treatment comparison table, before-after testimonial showcase, and WhatsApp reservation."
       },
-      "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=520&fit=crop&q=80",
-      "demoUrl": "https://gaweb.website/#demo",
+      "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636944969-screenshot-2026-09-17-114145.webp",
+      "demoUrl": "https://travel.gaweb.website",
       "tags": [
         "Conversion-Focused",
         "Testimonial Grid",
@@ -336,6 +336,34 @@
     }
   ],
   "mediaLibrary": [
+    {
+      "id": "img-1789636961862",
+      "name": "Screenshot 2026-09-17 153524.webp",
+      "url": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636961102-screenshot-2026-09-17-153524.webp",
+      "category": "uploads",
+      "uploadedAt": "2026-09-17T09:22:41.862Z"
+    },
+    {
+      "id": "img-1789636945720",
+      "name": "Screenshot 2026-09-17 114145.webp",
+      "url": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636944969-screenshot-2026-09-17-114145.webp",
+      "category": "uploads",
+      "uploadedAt": "2026-09-17T09:22:25.720Z"
+    },
+    {
+      "id": "img-1789636931694",
+      "name": "Screenshot 2026-09-17 114105.webp",
+      "url": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636930903-screenshot-2026-09-17-114105.webp",
+      "category": "uploads",
+      "uploadedAt": "2026-09-17T09:22:11.694Z"
+    },
+    {
+      "id": "img-1789636905712",
+      "name": "Screenshot 2026-09-16 133809.webp",
+      "url": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636904926-screenshot-2026-09-16-133809.webp",
+      "category": "uploads",
+      "uploadedAt": "2026-09-17T09:21:45.712Z"
+    },
     {
       "id": "img-hero-default",
       "name": "Hero Architecture Workspace",

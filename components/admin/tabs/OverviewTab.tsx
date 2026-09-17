@@ -7,20 +7,15 @@ import {
   FolderKanban,
   ImageIcon,
   CreditCard,
-  HelpCircle,
   MessageCircle,
   Plus,
   UploadCloud,
   FileDown,
   Globe,
   ArrowUpRight,
-  ShieldCheck,
-  CheckCircle2,
   Clock,
-  Sparkles,
   Cloud,
   ChevronRight,
-  ExternalLink,
 } from "lucide-react";
 import { SiteContentSchema } from "@/lib/types/content";
 import { AdminNavSection } from "../AdminSidebar";
@@ -67,48 +62,31 @@ export function OverviewTab({
   return (
     <div className="space-y-6">
       {/* 1. Welcome & System Status Banner */}
-      <div className="bg-gradient-to-br from-[#092734] via-[#092734] to-[#004F72] rounded-3xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#092734] via-[#092734] to-[#004F72] rounded-2xl p-6 text-white shadow-xs relative overflow-hidden">
         {/* Subtle Decorative Background Glow */}
         <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-[#004F72]/40 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute left-1/2 -top-12 w-48 h-48 bg-sky-400/10 rounded-full blur-2xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-sky-200 font-medium">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>gaweb Control Center • v2.0</span>
-          </div>
-
-          <h2 className="text-xl sm:text-3xl font-black tracking-tight leading-tight">
-            Selamat Datang di Panel Pengelolaan gaweb
+        <div className="relative z-10 max-w-2xl space-y-3">
+          <h2 className="text-xl sm:text-2xl font-black tracking-tight leading-tight">
+            Selamat Datang, Admin
           </h2>
 
-          <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
-            Kelola portofolio showcase, pustaka aset gambar via Cloudflare R2,
-            teks hero bilingual, paket harga, dan kontak WhatsApp resmi. Seluruh
-            perubahan tersinkronisasi instan ke landing page.
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+            Kelola portofolio, pustaka media, paket harga, dan konten landing page gaweb.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-slate-300">
+          <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs text-slate-300">
             <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-sm">
               <Clock className="w-3.5 h-3.5 text-sky-300" />
               <span>Update: {lastUpdatedText}</span>
             </div>
-            {storageInfo?.isR2Configured ? (
-              <div className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-200 border border-emerald-500/30 px-3 py-1.5 rounded-xl backdrop-blur-sm shadow-2xs">
+            {storageInfo?.isR2Configured && (
+              <div className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-200 border border-emerald-500/30 px-3 py-1.5 rounded-xl backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <Cloud className="w-3.5 h-3.5 text-emerald-300" />
-                <span className="font-semibold">Cloudflare R2 Aktif (Permanen)</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-1.5 bg-sky-500/15 text-sky-200 border border-sky-400/25 px-3 py-1.5 rounded-xl backdrop-blur-sm">
-                <Cloud className="w-3.5 h-3.5 text-sky-300" />
-                <span>Penyimpanan Lokal (data/site-content.json)</span>
+                <span className="font-semibold">Cloudflare R2 Aktif</span>
               </div>
             )}
-            <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-sm">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
-              <span>Sesi Admin Terproteksi</span>
-            </div>
           </div>
         </div>
       </div>
@@ -394,17 +372,6 @@ export function OverviewTab({
             </div>
           )}
         </div>
-      </div>
-
-      {/* 5. Cloudflare & Vercel Sync Informational Banner */}
-      <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/90 space-y-2">
-        <div className="flex items-center gap-2 text-xs font-bold text-[#092734]">
-          <CheckCircle2 className="w-4 h-4 text-[#004F72]" />
-          <span>Informasi Penyimpanan & Integrasi Cloudflare R2</span>
-        </div>
-        <p className="text-xs text-slate-600 leading-relaxed">
-          Semua file gambar kini otomatis dikompresi sebelum diunggah langsung ke <strong>Cloudflare R2 Object Storage</strong> yang cepat dan aman. Perubahan teks dan struktur disimpan di <code>data/site-content.json</code>. Tekan tombol <strong>Simpan</strong> (atau <code>Ctrl+S</code>) di pojok kanan atas untuk menyimpan perubahan Anda kapan saja.
-        </p>
       </div>
     </div>
   );

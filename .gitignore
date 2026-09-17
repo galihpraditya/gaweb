@@ -57,3 +57,20 @@ desktop.ini
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# AI Agents & Workspace Skills
+.agents/
+.agent/
+.gemini/
+.antigravity/
+
+# Python Cache (from agent scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Temporary data backups
+*.backup.json
+*.bak
+*.tmp

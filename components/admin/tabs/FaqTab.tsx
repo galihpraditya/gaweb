@@ -75,10 +75,6 @@ export function FaqTab({ faqs = [], onUpdateFaqs, editorLang }: FaqTabProps) {
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-lg bg-[#004F72]/10 text-[#004F72] border border-[#004F72]/20">
-            Bahasa: {editorLang === "id" ? "🇮🇩 Indonesia" : "🇬🇧 English"}
-          </span>
-
           <button
             type="button"
             onClick={handleAddFaq}

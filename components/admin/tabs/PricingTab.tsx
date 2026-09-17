@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Plus, Trash2, ChevronUp, ChevronDown, Sparkles } from "lucide-react";
 import { SitePricingPlan } from "@/lib/types/content";
 
@@ -68,16 +68,8 @@ export function PricingTab({
   pricing = [],
   onUpdatePricing,
   editorLang = "id",
-  onSetEditorLang,
 }: PricingTabProps) {
-  const [activeLang, setActiveLang] = useState<"id" | "en">(editorLang);
-
-  // Sync with prop when passed
-  const currentLang = onSetEditorLang ? editorLang : activeLang;
-  const setLang = (l: "id" | "en") => {
-    if (onSetEditorLang) onSetEditorLang(l);
-    setActiveLang(l);
-  };
+  const currentLang = editorLang;
 
   const handleUpdatePlan = (index: number, updatedFields: Partial<SitePricingPlan>) => {
     const next = pricing.map((plan, i) =>
@@ -164,32 +156,6 @@ export function PricingTab({
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Language Switcher Bar */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
-            <button
-              type="button"
-              onClick={() => setLang("id")}
-              className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                currentLang === "id"
-                  ? "bg-white text-[#004F72] shadow-2xs font-extrabold"
-                  : "text-slate-500 hover:text-slate-800"
-              }`}
-            >
-              🇮🇩 Indonesia
-            </button>
-            <button
-              type="button"
-              onClick={() => setLang("en")}
-              className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                currentLang === "en"
-                  ? "bg-white text-[#004F72] shadow-2xs font-extrabold"
-                  : "text-slate-500 hover:text-slate-800"
-              }`}
-            >
-              🇬🇧 English
-            </button>
-          </div>
-
           <button
             type="button"
             onClick={handleAddPlan}

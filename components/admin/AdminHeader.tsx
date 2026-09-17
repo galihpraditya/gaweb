@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   ChevronRight,
   ExternalLink,
-  AlertTriangle,
 } from "lucide-react";
 import { useAdmin } from "@/context/AdminContext";
 
@@ -176,8 +175,6 @@ export function AdminHeader({ onOpenMobileSidebar }: AdminHeaderProps) {
         >
           {isSaving ? (
             <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-          ) : isDirty ? (
-            <AlertTriangle className="w-3.5 h-3.5 text-amber-300 animate-bounce" />
           ) : (
             <Save className="w-3.5 h-3.5" />
           )}
