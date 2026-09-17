@@ -66,10 +66,17 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
     setIsSaving(true);
     try {
       const res = await fetch("/api/admin/content", {
-        method: "PUT",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newContent),
       });
+
+      if (res.status === 405) {
+        return {
+          success: false,
+          message: "Server Vercel menolak request (Error 405 Method Not Allowed). Pastikan route dikonfigurasi dinamis.",
+        };
+      }
 
       if (res.status === 413) {
         return {

@@ -10,7 +10,10 @@ function isAuthorized(req: NextRequest): boolean {
   return sessionCookie === SESSION_TOKEN;
 }
 
-export async function GET() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export async function GET(req: NextRequest) {
   try {
     const content = getSiteContent();
     return NextResponse.json({
@@ -24,6 +27,10 @@ export async function GET() {
       { status: 500 }
     );
   }
+}
+
+export async function POST(req: NextRequest) {
+  return PUT(req);
 }
 
 export async function PUT(req: NextRequest) {
