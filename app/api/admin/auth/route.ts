@@ -4,13 +4,21 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "gaweb2026!";
 const SESSION_COOKIE_NAME = "gaweb_admin_session";
 const SESSION_TOKEN = "authenticated_gaweb_admin_session_token_2026";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET(req: NextRequest) {
   const sessionCookie = req.cookies.get(SESSION_COOKIE_NAME)?.value;
   const isAuthenticated = sessionCookie === SESSION_TOKEN;
 
-  return NextResponse.json({
-    authenticated: isAuthenticated,
-  });
+  return NextResponse.json(
+    { authenticated: isAuthenticated },
+    {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      },
+    }
+  );
 }
 
 export async function POST(req: NextRequest) {

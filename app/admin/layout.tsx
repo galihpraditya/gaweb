@@ -92,9 +92,9 @@ export default function AdminRootLayout({
 
   const checkAuth = useCallback(async () => {
     try {
-      const res = await fetch("/api/admin/auth");
+      const res = await fetch("/api/admin/auth", { cache: "no-store" });
       const data = await res.json();
-      setIsAuthenticated(data.authenticated);
+      setIsAuthenticated(Boolean(data?.authenticated));
     } catch {
       setIsAuthenticated(false);
     }
