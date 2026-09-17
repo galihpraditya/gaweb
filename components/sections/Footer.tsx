@@ -4,9 +4,17 @@ import React from "react";
 import { BRAND, CONTACT, getWhatsAppUrl } from "@/lib/constants";
 import { MessageCircle, Instagram, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export function Footer() {
   const { t, language } = useLanguage();
+  const { content } = useSiteContent();
+
+  const contact = content?.contact || CONTACT;
+  const whatsappNumber = contact.whatsappNumber || CONTACT.whatsappNumber;
+  const email = contact.email || CONTACT.email;
+  const instagram = contact.instagram || CONTACT.instagram;
+  const location = contact.location || CONTACT.location;
 
   return (
     <footer className="bg-[#092734] text-slate-400 text-xs sm:text-sm border-t border-[#004F72]/20">
@@ -54,7 +62,8 @@ export function Footer() {
                   href={getWhatsAppUrl(
                     language === "en"
                       ? "Hello admin, I would like to get information about your custom website services."
-                      : "Halo admin, saya ingin tanya info pembuatan website."
+                      : "Halo admin, saya ingin tanya info pembuatan website.",
+                    whatsappNumber
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -66,27 +75,27 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={`https://instagram.com/${CONTACT.instagram.replace('@', '')}`}
+                  href={`https://instagram.com/${instagram.replace('@', '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-white transition-colors group"
                 >
                   <Instagram className="w-4 h-4 text-slate-400 group-hover:text-pink-400 shrink-0 transition-colors" />
-                  <span>{CONTACT.instagram}</span>
+                  <span>{instagram}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${CONTACT.email}`}
+                  href={`mailto:${email}`}
                   className="flex items-center gap-2 hover:text-white transition-colors group"
                 >
                   <Mail className="w-4 h-4 text-slate-400 group-hover:text-sky-400 shrink-0 transition-colors" />
-                  <span>{CONTACT.email}</span>
+                  <span>{email}</span>
                 </a>
               </li>
               <li className="flex items-start gap-2 text-slate-400">
                 <MapPin className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                <span>{CONTACT.location}</span>
+                <span>{location}</span>
               </li>
             </ul>
           </div>

@@ -5,9 +5,11 @@ import { getWhatsAppUrl } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { MessageCircle, CheckCircle2, Shield, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export function QuickInquirySection() {
   const { t, language } = useLanguage();
+  const { content } = useSiteContent();
   const [formData, setFormData] = useState({
     name: "",
     businessName: "",
@@ -36,7 +38,7 @@ export function QuickInquirySection() {
 
     const message = `${prefix}${nameLine}\n${businessLine}\n${packageLine}${notesLine}`;
 
-    window.open(getWhatsAppUrl(message), "_blank");
+    window.open(getWhatsAppUrl(message, content?.contact?.whatsappNumber), "_blank");
   };
 
   return (

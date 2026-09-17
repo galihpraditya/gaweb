@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
 
     return response;
   } catch (err) {
+    console.error("Auth error details:", err);
     return NextResponse.json(
       { error: "Terjadi kesalahan server saat proses login." },
       { status: 500 }

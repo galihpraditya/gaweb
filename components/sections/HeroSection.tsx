@@ -58,7 +58,8 @@ export function HeroSection() {
             href={getWhatsAppUrl(
               language === "en"
                 ? "Hello gaweb, I would like to order a custom website."
-                : "Halo gaweb, saya ingin pesan pembuatan website custom."
+                : "Halo gaweb, saya ingin pesan pembuatan website custom.",
+              content?.contact?.whatsappNumber
             )}
             target="_blank"
             rel="noopener noreferrer"
@@ -70,7 +71,7 @@ export function HeroSection() {
               className="w-full sm:w-auto gap-2.5 text-base font-bold px-8 py-3.5 shadow-md shadow-[#004F72]/20 hover:shadow-lg transition-all"
             >
               <MessageCircle className="w-5 h-5 text-emerald-300 group-hover:scale-105 transition-transform duration-200" />
-              <span>{t.hero.ctaPrimary}</span>
+              <span>{ctaPrimary}</span>
             </Button>
           </a>
           <a href="#harga" className="w-full sm:w-auto group">
@@ -79,7 +80,7 @@ export function HeroSection() {
               size="lg"
               className="w-full sm:w-auto bg-white hover:bg-slate-50 border-slate-300 text-[#092734] gap-2 text-base font-bold px-7 py-3.5 shadow-2xs"
             >
-              <span>{t.hero.ctaSecondary}</span>
+              <span>{ctaSecondary}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
             </Button>
           </a>

@@ -98,8 +98,9 @@ export const SEO_CONFIG = {
 /**
  * Helper untuk membuat URL WhatsApp dengan prefilled text
  */
-export function getWhatsAppUrl(customMessage?: string): string {
-  const phone = (CONTACT.whatsappNumber || "62881036657944").replace(/[^0-9]/g, "");
+export function getWhatsAppUrl(customMessage?: string, phoneOverride?: string): string {
+  const rawPhone = phoneOverride || CONTACT.whatsappNumber || "62881036657944";
+  const phone = rawPhone.replace(/[^0-9]/g, "");
   const defaultText =
     "Halo admin gaweb, saya tertarik memesan pembuatan website custom untuk usaha saya.";
   const text = encodeURIComponent(customMessage || defaultText);

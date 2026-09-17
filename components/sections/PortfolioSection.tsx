@@ -52,7 +52,7 @@ export function PortfolioSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-teal-600/30 transition-all duration-300 flex flex-col"
+                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-[#004F72]/30 transition-all duration-300 flex flex-col"
               >
                 {/* Image Showcase Preview */}
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
@@ -111,12 +111,12 @@ export function PortfolioSection() {
                     )}
 
                     <a
-                      href={getWhatsAppUrl(waMessage)}
+                      href={getWhatsAppUrl(waMessage, content?.contact?.whatsappNumber)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:px-3.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-teal-600 hover:bg-teal-700 transition-colors shadow-xs whitespace-nowrap"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:px-3.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-[#004F72] hover:bg-[#092734] active:scale-[0.98] transition-all duration-200 shadow-xs hover:shadow-md hover:shadow-[#004F72]/20 whitespace-nowrap"
                     >
-                      <MessageCircle className="w-3.5 h-3.5 text-emerald-200" />
+                      <MessageCircle className="w-3.5 h-3.5 text-white/90" />
                       <span>{t.portfolio.orderSimilar}</span>
                     </a>
                   </div>
@@ -138,7 +138,7 @@ export function PortfolioSection() {
         <div className="mt-12 bg-slate-50/80 rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="text-base sm:text-lg font-bold text-[#092734] flex items-center justify-center sm:justify-start gap-2">
-              <CheckCircle2 className="w-5 h-5 text-teal-600 shrink-0" />
+              <CheckCircle2 className="w-5 h-5 text-[#004F72] shrink-0" />
               <span>Semua website di atas bisa kamu kelola sendiri dengan mudah</span>
             </h4>
             <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
@@ -150,7 +150,8 @@ export function PortfolioSection() {
             href={getWhatsAppUrl(
               language === "en"
                 ? "Hello gaweb, I want to discuss a custom website for my business."
-                : "Halo gaweb, saya ingin konsultasi pembuatan website custom untuk usaha saya."
+                : "Halo gaweb, saya ingin konsultasi pembuatan website custom untuk usaha saya.",
+              content?.contact?.whatsappNumber
             )}
             target="_blank"
             rel="noopener noreferrer"

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-16T06:46:50.850Z",
+  "lastUpdated": "2026-09-17T03:20:58.504Z",
   "hero": {
     "h1Pre": {
       "id": "Bikin Website Modern yang",
@@ -155,64 +155,149 @@
   "pricing": [
     {
       "id": "starter",
-      "name": "Paket Promo Starter",
-      "badge": "Hemat 33%",
+      "name": {
+        "id": "Paket Promo Starter",
+        "en": "Promo Starter Package"
+      },
+      "badge": {
+        "id": "Hemat 33%",
+        "en": "Save 33%"
+      },
       "isPopular": false,
-      "target": "Cocok untuk UMKM pemula, personal branding, atau promosi 1 produk utama.",
+      "target": {
+        "id": "Cocok untuk UMKM pemula, personal branding, atau promosi 1 produk utama.",
+        "en": "Ideal for startups, personal branding, or single-product campaigns."
+      },
       "originalPrice": "Rp 1.500.000",
-      "discountBadge": "Hemat 33%",
+      "discountBadge": {
+        "id": "Hemat 33%",
+        "en": "Save 33%"
+      },
       "priceDisplay": "Rp 999.000",
-      "timeline": "3–5 hari kerja",
-      "description": "Website 1 halaman (landing page) konversi tinggi yang ringkas, cepat, dan fokus menjual.",
-      "features": [
-        "1 Halaman Landing Page konversi tinggi",
-        "Desain modern, mobile-friendly & responsif",
-        "Domain (.com / .id) & Cloud Hosting 1 tahun",
-        "Dashboard admin mandiri (edit teks & foto sendiri)",
-        "Video panduan training admin 15 menit via Loom",
-        "Integrasi tombol WhatsApp & formulir kontak",
-        "Garansi perbaikan bug & error 7 hari"
-      ]
+      "timeline": {
+        "id": "3–5 hari kerja",
+        "en": "3–5 business days"
+      },
+      "description": {
+        "id": "Website 1 halaman (landing page) konversi tinggi yang ringkas, cepat, dan fokus menjual.",
+        "en": "A streamlined, high-converting single-page website that is fast and built to sell."
+      },
+      "features": {
+        "id": [
+          "1 Halaman Landing Page konversi tinggi",
+          "Desain modern, mobile-friendly & responsif",
+          "Domain (.com / .id) & Cloud Hosting 1 tahun",
+          "Dashboard admin mandiri (edit teks & foto sendiri)",
+          "Video panduan training admin 15 menit via Loom",
+          "Integrasi tombol WhatsApp & formulir kontak",
+          "Garansi perbaikan bug & error 7 hari"
+        ],
+        "en": [
+          "1 High-Converting Landing Page",
+          "Modern, Mobile-Friendly & Responsive Design",
+          "Domain (.com / .id) & 1-Year Cloud Hosting",
+          "Self-Serve Admin Dashboard (Edit Text & Photos)",
+          "15-Minute Admin Training Video via Loom",
+          "WhatsApp Button & Contact Form Integration",
+          "7-Day Bug & Error Repair Warranty"
+        ]
+      }
     },
     {
       "id": "bisnis",
-      "name": "Paket Promo Bisnis",
-      "badge": "Paling Populer",
+      "name": {
+        "id": "Paket Promo Bisnis",
+        "en": "Promo Business Package"
+      },
+      "badge": {
+        "id": "Paling Populer",
+        "en": "Most Popular"
+      },
       "isPopular": true,
-      "target": "Pilihan terbaik untuk UMKM berkembang, profil perusahaan & jasa profesional.",
+      "target": {
+        "id": "Pilihan terbaik untuk UMKM berkembang, profil perusahaan & jasa profesional.",
+        "en": "Best choice for growing businesses, corporate profiles & services."
+      },
       "originalPrice": "Rp 2.800.000",
-      "discountBadge": "Hemat 28%",
+      "discountBadge": {
+        "id": "Hemat 28%",
+        "en": "Save 28%"
+      },
       "priceDisplay": "Rp 1.999.000",
-      "timeline": "5–7 hari kerja",
-      "description": "Website multi-halaman lengkap dan berwibawa untuk membangun kredibilitas bisnis.",
-      "features": [
-        "Semua fitur Paket Starter",
-        "3–5 Halaman (Beranda, Profil, Layanan, Kontak)",
-        "Optimasi Google SEO dasar (muncul di pencarian)",
-        "Integrasi Google Maps lokasi bisnis",
-        "Desain custom eksklusif sesuai warna brand",
-        "Dukungan prioritas via WhatsApp 1 bulan"
-      ]
+      "timeline": {
+        "id": "5–7 hari kerja",
+        "en": "5–7 business days"
+      },
+      "description": {
+        "id": "Website multi-halaman lengkap dan berwibawa untuk membangun kredibilitas bisnis.",
+        "en": "An authoritative multi-page website to establish strong brand credibility."
+      },
+      "features": {
+        "id": [
+          "Semua fitur Paket Starter",
+          "3–5 Halaman (Beranda, Profil, Layanan, Kontak)",
+          "Optimasi Google SEO dasar (muncul di pencarian)",
+          "Integrasi Google Maps lokasi bisnis",
+          "Desain custom eksklusif sesuai warna brand",
+          "Dukungan prioritas via WhatsApp 1 bulan"
+        ],
+        "en": [
+          "All Starter Package Features",
+          "3–5 Pages (Home, About, Services, Contact)",
+          "Basic Google SEO Optimization (Search Ready)",
+          "Google Maps Business Location Integration",
+          "Exclusive Custom Design Tailored to Brand Colors",
+          "1-Month Priority Support via WhatsApp"
+        ]
+      }
     },
     {
       "id": "custom-plus",
-      "name": "Paket Promo Custom Plus",
-      "badge": "Solusi Lengkap",
+      "name": {
+        "id": "Paket Promo Custom Plus",
+        "en": "Custom Plus Package"
+      },
+      "badge": {
+        "id": "Solusi Lengkap",
+        "en": "Full Solution"
+      },
       "isPopular": false,
-      "target": "Sangat ideal untuk biro tour & travel, katalog produk, atau rental mobil.",
+      "target": {
+        "id": "Sangat ideal untuk biro tour & travel, katalog produk, atau rental mobil.",
+        "en": "Ideal for tour & travel agencies, product catalogs, or car rentals."
+      },
       "originalPrice": "Rp 3.800.000",
-      "discountBadge": "Hemat 26%",
+      "discountBadge": {
+        "id": "Hemat 26%",
+        "en": "Save 26%"
+      },
       "priceDisplay": "Rp 2.800.000",
-      "timeline": "6–8 hari kerja",
-      "description": "Website custom dengan fitur katalog dinamis untuk menampilkan banyak produk/paket wisata.",
-      "features": [
-        "Semua fitur Paket Bisnis",
-        "Katalog produk / paket wisata interaktif",
-        "Filter kategori & fitur pencarian produk",
-        "Tombol order langsung ke WhatsApp per produk",
-        "Struktur SEO produk lebih optimal",
-        "Training intensif pengelolaan katalog"
-      ]
+      "timeline": {
+        "id": "6–8 hari kerja",
+        "en": "6–8 business days"
+      },
+      "description": {
+        "id": "Website custom dengan fitur katalog dinamis untuk menampilkan banyak produk/paket wisata.",
+        "en": "Custom website with dynamic catalog features to showcase multiple products or tours."
+      },
+      "features": {
+        "id": [
+          "Semua fitur Paket Bisnis",
+          "Katalog produk / paket wisata interaktif",
+          "Filter kategori & fitur pencarian produk",
+          "Tombol order langsung ke WhatsApp per produk",
+          "Struktur SEO produk lebih optimal",
+          "Training intensif pengelolaan katalog"
+        ],
+        "en": [
+          "All Business Package Features",
+          "Interactive Product / Tour Package Catalog",
+          "Category Filters & Product Search Feature",
+          "Direct WhatsApp Order Button per Product",
+          "Optimized Product SEO Architecture",
+          "Intensive Catalog Management Training"
+        ]
+      }
     }
   ],
   "faqs": [
@@ -251,13 +336,6 @@
     }
   ],
   "mediaLibrary": [
-    {
-      "id": "img-1789541210850",
-      "name": "Mengenal-Rasisme-Penyebab-Ciri-dan-Cara-Mengatasinya.png",
-      "url": "/images/uploads/1789541210847-mengenal-rasisme-penyebab-ciri.png",
-      "category": "uploads",
-      "uploadedAt": "2026-09-16T06:46:50.850Z"
-    },
     {
       "id": "img-hero-default",
       "name": "Hero Architecture Workspace",

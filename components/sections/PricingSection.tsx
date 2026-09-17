@@ -13,17 +13,42 @@ export function PricingSection() {
   const [expandedPlans, setExpandedPlans] = useState<Record<string, boolean>>({});
 
   const dynamicPricing = content?.pricing;
-  const plans = t.pricing.plans.map((p) => {
-    const override = dynamicPricing?.find((dp) => dp.id === p.id);
-    if (!override || language !== "id") return p;
+  const whatsappNumber = content?.contact?.whatsappNumber;
+
+  const getBilingualValue = (val: any, fallback = ""): string => {
+    if (!val) return fallback;
+    if (typeof val === "string") return val;
+    return val[language] || val.id || val.en || fallback;
+  };
+
+  const getBilingualFeaturesList = (val: any, fallback: string[] = []): string[] => {
+    if (!val) return fallback;
+    if (Array.isArray(val)) return val;
+    return val[language] || val.id || val.en || fallback;
+  };
+
+  // Render from content.pricing if available, merging with translation text
+  const plans = (dynamicPricing && dynamicPricing.length > 0 ? dynamicPricing : t.pricing.plans).map((dp) => {
+    const tPlan = t.pricing.plans.find((p) => p.id === dp.id);
+    const planName = getBilingualValue(dp.name, tPlan?.name || "Paket Website");
+    const defaultWaMessage =
+      language === "en"
+        ? `Hello gaweb, I am interested in ordering the "${planName}" (${dp.priceDisplay}). Can we discuss the details?`
+        : `Halo gaweb, saya tertarik memesan "${planName}" (${dp.priceDisplay}). Bisa info detailnya?`;
+
     return {
-      ...p,
-      name: override.name || p.name,
-      priceDisplay: override.priceDisplay || p.priceDisplay,
-      originalPrice: override.originalPrice || p.originalPrice,
-      discountBadge: override.discountBadge || p.discountBadge,
-      timeline: override.timeline || p.timeline,
-      features: override.features?.length ? override.features : p.features,
+      id: dp.id,
+      name: planName,
+      badge: getBilingualValue(dp.badge, tPlan?.badge || ""),
+      isPopular: typeof dp.isPopular === "boolean" ? dp.isPopular : (tPlan?.isPopular || false),
+      target: getBilingualValue(dp.target, tPlan?.target || ""),
+      originalPrice: dp.originalPrice || tPlan?.originalPrice || "",
+      discountBadge: getBilingualValue(dp.discountBadge, tPlan?.discountBadge || ""),
+      priceDisplay: dp.priceDisplay || tPlan?.priceDisplay || "",
+      timeline: getBilingualValue(dp.timeline, tPlan?.timeline || ""),
+      description: getBilingualValue(dp.description, tPlan?.description || ""),
+      features: getBilingualFeaturesList(dp.features, tPlan?.features || []),
+      waMessage: tPlan?.waMessage || defaultWaMessage,
     };
   });
 
@@ -157,7 +182,7 @@ export function PricingSection() {
                 {/* Card Bottom CTA */}
                 <div className="p-6 sm:p-7 pt-0">
                   <a
-                    href={getWhatsAppUrl(plan.waMessage)}
+                    href={getWhatsAppUrl(plan.waMessage, whatsappNumber)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
@@ -192,7 +217,8 @@ export function PricingSection() {
             href={getWhatsAppUrl(
               language === "en"
                 ? "Hello gaweb, I would like to inquire about custom website features outside standard packages."
-                : "Halo gaweb, saya ingin tanya kebutuhan custom website di luar paket standar."
+                : "Halo gaweb, saya ingin tanya kebutuhan custom website di luar paket standar.",
+              whatsappNumber
             )}
             target="_blank"
             rel="noopener noreferrer"

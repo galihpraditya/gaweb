@@ -12,10 +12,10 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqItems =
-    content?.faqs && content.faqs.length > 0 && language === "id"
+    content?.faqs && content.faqs.length > 0
       ? content.faqs.map((f) => ({
-          question: f.question[language] || f.question.id,
-          answer: f.answer[language] || f.answer.id,
+          question: f.question?.[language] || f.question?.id || "",
+          answer: f.answer?.[language] || f.answer?.id || "",
         }))
       : t.faq.items;
 
@@ -91,7 +91,8 @@ export function FaqSection() {
             href={getWhatsAppUrl(
               language === "en"
                 ? "Hello gaweb, I would like to ask questions about your custom website services."
-                : "Halo gaweb, saya mau tanya-tanya lebih lanjut seputar paket website."
+                : "Halo gaweb, saya mau tanya-tanya lebih lanjut seputar paket website.",
+              content?.contact?.whatsappNumber
             )}
             target="_blank"
             rel="noopener noreferrer"

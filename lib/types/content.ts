@@ -8,8 +8,8 @@ export type PortfolioCategory =
 export interface PortfolioItem {
   id: string;
   title: string;
-  category: "landing-page" | "company-profile" | "travel" | "umkm";
-  categoryLabel: {
+  category?: "landing-page" | "company-profile" | "travel" | "umkm" | string;
+  categoryLabel?: {
     id: string;
     en: string;
   };
@@ -21,12 +21,12 @@ export interface PortfolioItem {
   imageUrl: string;
   demoUrl?: string;
   tags: string[];
-  metrics: {
-    pageSpeed: string; // e.g. "99/100"
-    loadTime: string;  // e.g. "0.7s"
-    highlight: string; // e.g. "Konversi +42%" or "Mobile-First"
+  metrics?: {
+    pageSpeed?: string;
+    loadTime?: string;
+    highlight?: string;
   };
-  featured: boolean;
+  featured?: boolean;
   order: number;
 }
 
@@ -50,16 +50,16 @@ export interface SiteHero {
 
 export interface SitePricingPlan {
   id: string;
-  name: string;
-  badge?: string;
+  name: string | { id: string; en: string };
+  badge?: string | { id: string; en: string };
   isPopular?: boolean;
-  target: string;
+  target?: string | { id: string; en: string };
   originalPrice: string;
-  discountBadge: string;
+  discountBadge?: string | { id: string; en: string };
   priceDisplay: string;
-  timeline: string;
-  description: string;
-  features: string[];
+  timeline?: string | { id: string; en: string };
+  description?: string | { id: string; en: string };
+  features?: string[] | { id: string[]; en: string[] };
 }
 
 export interface SiteFaqItem {
@@ -68,11 +68,18 @@ export interface SiteFaqItem {
   answer: { id: string; en: string };
 }
 
+export interface SiteSeoConfig {
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string;
+}
+
 export interface SiteContentSchema {
   version: string;
   lastUpdated: string;
   hero: SiteHero;
   contact: SiteContact;
+  seo?: SiteSeoConfig;
   portfolios: PortfolioItem[];
   pricing: SitePricingPlan[];
   faqs: SiteFaqItem[];

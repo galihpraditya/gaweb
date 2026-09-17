@@ -10,6 +10,7 @@ interface SiteContentContextType {
   isSaving: boolean;
   refreshContent: () => Promise<void>;
   updateContent: (newContent: SiteContentSchema) => Promise<{ success: boolean; message: string; persistedToRepoFile?: boolean }>;
+  deleteMediaItem: (mediaId: string) => Promise<{ success: boolean; message: string }>;
   resetToDefault: () => Promise<void>;
 }
 
@@ -99,6 +100,15 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
     }
   };
 
+  const deleteMediaItem = async (mediaId: string) => {
+    const updatedMedia = (content.mediaLibrary || []).filter((m) => m.id !== mediaId);
+    const updatedContent = {
+      ...content,
+      mediaLibrary: updatedMedia,
+    };
+    return updateContent(updatedContent);
+  };
+
   const resetToDefault = async () => {
     await updateContent(defaultData as SiteContentSchema);
   };
@@ -109,6 +119,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
     isSaving,
     refreshContent,
     updateContent,
+    deleteMediaItem,
     resetToDefault,
   };
 

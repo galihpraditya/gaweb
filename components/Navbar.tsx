@@ -6,12 +6,15 @@ import { getWhatsAppUrl } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 import { MessageCircle, Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, t } = useLanguage();
+  const { content } = useSiteContent();
+  const whatsappNumber = content?.contact?.whatsappNumber;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +64,8 @@ export function Navbar() {
             href={getWhatsAppUrl(
               language === "en"
                 ? "Hello gaweb, I want to order a custom website."
-                : "Halo gaweb, saya ingin pesan pembuatan website custom untuk usaha saya."
+                : "Halo gaweb, saya ingin pesan pembuatan website custom untuk usaha saya.",
+              whatsappNumber
             )}
             target="_blank"
             rel="noopener noreferrer"
@@ -83,7 +87,8 @@ export function Navbar() {
             href={getWhatsAppUrl(
               language === "en"
                 ? "Hello gaweb, I want to order a custom website."
-                : "Halo gaweb, saya ingin pesan pembuatan website custom untuk usaha saya."
+                : "Halo gaweb, saya ingin pesan pembuatan website custom untuk usaha saya.",
+              whatsappNumber
             )}
             target="_blank"
             rel="noopener noreferrer"
