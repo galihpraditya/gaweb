@@ -1,8 +1,11 @@
 import {
   S3Client,
   PutObjectCommand,
+  GetObjectCommand,
   DeleteObjectCommand,
+  HeadBucketCommand,
 } from "@aws-sdk/client-s3";
+import { SiteContentSchema } from "./types/content";
 
 // 5 Variabel lingkungan Cloudflare R2
 const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID;
@@ -106,3 +109,104 @@ export async function deleteFileFromR2(fileUrlOrKey: string): Promise<boolean> {
     return false;
   }
 }
+
+const CONTENT_OBJECT_KEY = "site-content.json";
+
+/**
+ * Menyimpan seluruh data konten website (JSON) secara permanen ke bucket Cloudflare R2
+ */
+export async function saveContentToR2(content: SiteContentSchema): Promise<boolean> {
+  if (!isR2Configured()) return false;
+
+  try {
+    const client = getR2Client();
+    const serialized = JSON.stringify(content, null, 2);
+
+    const command = new PutObjectCommand({
+      Bucket: R2_BUCKET_NAME,
+      Key: CONTENT_OBJECT_KEY,
+      Body: serialized,
+      ContentType: "application/json; charset=utf-8",
+      CacheControl: "no-cache, no-store, must-revalidate",
+    });
+
+    await client.send(command);
+    return true;
+  } catch (err) {
+    console.error("Gagal menyimpan site-content.json ke Cloudflare R2:", err);
+    return false;
+  }
+}
+
+/**
+ * Mengambil data konten website dari bucket Cloudflare R2
+ */
+export async function getContentFromR2(): Promise<SiteContentSchema | null> {
+  if (!isR2Configured()) return null;
+
+  try {
+    const client = getR2Client();
+    const command = new GetObjectCommand({
+      Bucket: R2_BUCKET_NAME,
+      Key: CONTENT_OBJECT_KEY,
+    });
+
+    const response = await client.send(command);
+    if (!response.Body) return null;
+
+    const bodyString = await response.Body.transformToString("utf-8");
+    const parsed = JSON.parse(bodyString) as SiteContentSchema;
+
+    if (parsed && parsed.hero && parsed.portfolios) {
+      return parsed;
+    }
+    return null;
+  } catch (err: any) {
+    // Jika file belum ada di bucket (NoSuchKey / 404), return null agar fallback ke file lokal
+    if (err?.name === "NoSuchKey" || err?.$metadata?.httpStatusCode === 404) {
+      return null;
+    }
+    console.warn("Notice saat mengambil konten dari Cloudflare R2:", err?.message || err);
+    return null;
+  }
+}
+
+/**
+ * Memeriksa status kesehatan koneksi Cloudflare R2
+ */
+export async function checkR2Health(): Promise<{
+  success: boolean;
+  message: string;
+  isConfigured: boolean;
+  bucket?: string;
+}> {
+  if (!isR2Configured()) {
+    return {
+      success: false,
+      isConfigured: false,
+      message: "Kredensial Cloudflare R2 belum lengkap di environment variables.",
+    };
+  }
+
+  try {
+    const client = getR2Client();
+    const command = new HeadBucketCommand({
+      Bucket: R2_BUCKET_NAME,
+    });
+    await client.send(command);
+    return {
+      success: true,
+      isConfigured: true,
+      bucket: R2_BUCKET_NAME,
+      message: `Koneksi ke bucket '${R2_BUCKET_NAME}' berhasil & aktif.`,
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      isConfigured: true,
+      bucket: R2_BUCKET_NAME,
+      message: `Gagal mengakses bucket '${R2_BUCKET_NAME}': ${err?.message || "Koneksi ditolak"}`,
+    };
+  }
+}
+

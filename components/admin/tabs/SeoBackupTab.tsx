@@ -1,18 +1,25 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   FileDown,
   Upload,
   RotateCcw,
   CheckCircle2,
   HardDrive,
-  GitBranch,
+  Cloud,
+  RefreshCw,
+  AlertCircle,
+  ShieldCheck,
 } from "lucide-react";
 import { SiteContentSchema } from "@/lib/types/content";
 
 interface SeoBackupTabProps {
   formData: SiteContentSchema;
+  storageInfo?: {
+    isR2Configured: boolean;
+    engine: "r2" | "local" | "ephemeral";
+  } | null;
   onDownloadBackup: () => void;
   onImportBackup: (content: SiteContentSchema) => void;
   onResetToDefault: () => void;
@@ -20,11 +27,39 @@ interface SeoBackupTabProps {
 
 export function SeoBackupTab({
   formData,
+  storageInfo,
   onDownloadBackup,
   onImportBackup,
   onResetToDefault,
 }: SeoBackupTabProps) {
   const jsonInputRef = useRef<HTMLInputElement>(null);
+  const [testingR2, setTestingR2] = useState(false);
+  const [testResult, setTestResult] = useState<{
+    success: boolean;
+    message: string;
+    bucket?: string;
+  } | null>(null);
+
+  const handleTestR2 = async () => {
+    setTestingR2(true);
+    setTestResult(null);
+    try {
+      const res = await fetch("/api/admin/storage");
+      const data = await res.json();
+      setTestResult({
+        success: Boolean(data.success),
+        message: data.message || "Uji koneksi selesai.",
+        bucket: data.bucket,
+      });
+    } catch {
+      setTestResult({
+        success: false,
+        message: "Gagal menghubungi endpoint storage server.",
+      });
+    } finally {
+      setTestingR2(false);
+    }
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -53,57 +88,92 @@ export function SeoBackupTab({
   const totalPricing = formData.pricing?.length || 0;
   const totalFaqs = formData.faqs?.length || 0;
 
+  const isR2Active = storageInfo?.isR2Configured;
+
   return (
     <div className="space-y-6">
-      {/* 1. VERCEL & GITHUB DEPLOYMENT GUIDE */}
+      {/* 1. CLOUDFLARE R2 PERSISTENT STORAGE STATUS & HEALTH */}
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-2xs space-y-5">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-[#004F72]/10 text-[#004F72]">
-            <GitBranch className="w-5 h-5" />
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-[#004F72]/10 text-[#004F72]">
+              <Cloud className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-base sm:text-lg font-bold text-[#092734]">
+                Penyimpanan Permanen Cloudflare R2
+              </h2>
+              <p className="text-xs text-slate-500">
+                Penyimpanan dokumen data website secara cloud-native, persisten, dan instan.
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-base sm:text-lg font-bold text-[#092734]">
-              Penyimpanan Permanen Vercel & Sinkronisasi Git
-            </h2>
-            <p className="text-xs text-slate-500">
-              Panduan menyimpan data konten secara permanen ke repositori kode GitHub Anda.
-            </p>
+
+          <div className="flex items-center gap-2">
+            {isR2Active ? (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Cloudflare R2 Aktif</span>
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                <AlertCircle className="w-3.5 h-3.5" />
+                <span>Mode Penyimpanan Lokal</span>
+              </span>
+            )}
           </div>
         </div>
 
         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          Hosting Vercel bersifat <em>serverless read-only filesystem</em>. Perubahan konten yang Anda simpan di panel admin ini langsung aktif di sesi live browser Anda. Agar perubahan konten menjadi <strong>permanen selamanya</strong> pada server Vercel ketika dideploy ulang:
+          Setiap kali Anda menekan tombol <strong>Simpan Perubahan</strong> atau shortcut{" "}
+          <kbd className="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-300 font-mono text-[11px] text-slate-700">Ctrl + S</kbd>,
+          data langsung disimpan secara permanen ke bucket Cloudflare R2 dan cache halaman utama Next.js dibersihkan seketika. Seluruh pengunjung web dan admin langsung melihat data terbaru tanpa perlu git commit/push manual.
         </p>
 
-        <div className="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
-          <div className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#004F72]" />
-            <span>3 Langkah Simpan Permanen ke Git:</span>
+        {/* Live Test Result Banner */}
+        {testResult && (
+          <div
+            className={`p-4 rounded-xl text-xs flex items-start gap-2.5 border ${
+              testResult.success
+                ? "bg-emerald-50 border-emerald-200 text-emerald-800"
+                : "bg-rose-50 border-rose-200 text-rose-800"
+            }`}
+          >
+            {testResult.success ? (
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+            ) : (
+              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+            )}
+            <div className="space-y-1">
+              <span className="font-bold block">
+                {testResult.success ? "Koneksi Berhasil!" : "Pemeriksaan Koneksi Gagal"}
+              </span>
+              <p className="leading-relaxed">{testResult.message}</p>
+              {testResult.bucket && (
+                <p className="font-mono text-[11px] opacity-85">Target Bucket: {testResult.bucket}</p>
+              )}
+            </div>
           </div>
-          <ol className="list-decimal list-inside text-xs text-slate-600 space-y-2 leading-relaxed">
-            <li>
-              Klik tombol <strong>Download File site-content.json</strong> di bawah untuk mengunduh seluruh data terbaru.
-            </li>
-            <li>
-              Pindahkan/replace file hasil unduhan tersebut ke dalam folder project Anda di:{" "}
-              <code className="bg-slate-200 px-1.5 py-0.5 rounded text-[#092734] font-mono font-bold">
-                data/site-content.json
-              </code>
-            </li>
-            <li>
-              Lakukan <strong>git commit &amp; git push</strong> ke repository GitHub Anda. Vercel akan otomatis melakukan redeploy dengan data terbaru!
-            </li>
-          </ol>
-        </div>
+        )}
 
-        <div className="flex items-center gap-3 pt-2">
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <button
+            type="button"
+            onClick={handleTestR2}
+            disabled={testingR2}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all cursor-pointer disabled:opacity-50"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${testingR2 ? "animate-spin text-[#004F72]" : ""}`} />
+            <span>{testingR2 ? "Menguji Koneksi..." : "Uji Koneksi Cloudflare R2"}</span>
+          </button>
+
           <button
             type="button"
             onClick={onDownloadBackup}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#004F72] hover:bg-[#003d59] text-white text-xs font-bold shadow-xs transition-all cursor-pointer active:scale-95"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#004F72] hover:bg-[#003d59] text-white text-xs font-bold shadow-2xs transition-all cursor-pointer active:scale-95"
           >
             <FileDown className="w-4 h-4" />
-            <span>Download File data/site-content.json</span>
+            <span>Download Cadangan File JSON</span>
           </button>
         </div>
       </div>

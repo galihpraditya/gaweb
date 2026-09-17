@@ -92,12 +92,12 @@ export async function POST(req: NextRequest) {
     };
 
     try {
-      const currentContent = getSiteContent();
+      const currentContent = await getSiteContent();
       currentContent.mediaLibrary = [
         mediaItem,
         ...(currentContent.mediaLibrary || []),
       ];
-      saveSiteContent(currentContent);
+      await saveSiteContent(currentContent);
     } catch (saveErr) {
       console.warn("Gagal sinkronisasi otomatis mediaLibrary:", saveErr);
     }
@@ -143,11 +143,11 @@ export async function DELETE(req: NextRequest) {
 
     // Hapus dari mediaLibrary lokal
     try {
-      const currentContent = getSiteContent();
+      const currentContent = await getSiteContent();
       currentContent.mediaLibrary = (currentContent.mediaLibrary || []).filter(
         (m) => m.url !== fileUrl
       );
-      saveSiteContent(currentContent);
+      await saveSiteContent(currentContent);
     } catch {
       // Abaikan jika content service sedang read-only
     }

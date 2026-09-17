@@ -27,6 +27,10 @@ import { AdminNavSection } from "../AdminSidebar";
 
 interface OverviewTabProps {
   formData: SiteContentSchema;
+  storageInfo?: {
+    isR2Configured: boolean;
+    engine: "r2" | "local" | "ephemeral";
+  } | null;
   onNavigate: (section: AdminNavSection) => void;
   onOpenAddPortfolio: () => void;
   onDownloadBackup: () => void;
@@ -34,6 +38,7 @@ interface OverviewTabProps {
 
 export function OverviewTab({
   formData,
+  storageInfo,
   onNavigate,
   onOpenAddPortfolio,
   onDownloadBackup,
@@ -88,10 +93,18 @@ export function OverviewTab({
               <Clock className="w-3.5 h-3.5 text-sky-300" />
               <span>Update: {lastUpdatedText}</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-sm">
-              <Cloud className="w-3.5 h-3.5 text-cyan-300" />
-              <span>Cloudflare R2 Ready</span>
-            </div>
+            {storageInfo?.isR2Configured ? (
+              <div className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-200 border border-emerald-500/30 px-3 py-1.5 rounded-xl backdrop-blur-sm shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <Cloud className="w-3.5 h-3.5 text-emerald-300" />
+                <span className="font-semibold">Cloudflare R2 Aktif (Permanen)</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1.5 bg-sky-500/15 text-sky-200 border border-sky-400/25 px-3 py-1.5 rounded-xl backdrop-blur-sm">
+                <Cloud className="w-3.5 h-3.5 text-sky-300" />
+                <span>Penyimpanan Lokal (data/site-content.json)</span>
+              </div>
+            )}
             <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-sm">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
               <span>Sesi Admin Terproteksi</span>

@@ -8,8 +8,18 @@ interface SiteContentContextType {
   content: SiteContentSchema;
   isLoading: boolean;
   isSaving: boolean;
+  storageInfo: {
+    isR2Configured: boolean;
+    engine: "r2" | "local" | "ephemeral";
+  } | null;
   refreshContent: () => Promise<void>;
-  updateContent: (newContent: SiteContentSchema) => Promise<{ success: boolean; message: string; persistedToRepoFile?: boolean }>;
+  updateContent: (newContent: SiteContentSchema) => Promise<{
+    success: boolean;
+    message: string;
+    persistedToCloud?: boolean;
+    persistedToRepoFile?: boolean;
+    storageEngine?: "r2" | "local" | "ephemeral";
+  }>;
   deleteMediaItem: (mediaId: string) => Promise<{ success: boolean; message: string }>;
   resetToDefault: () => Promise<void>;
 }
@@ -22,6 +32,10 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
   const [content, setContent] = useState<SiteContentSchema>(defaultData as SiteContentSchema);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [storageInfo, setStorageInfo] = useState<{
+    isR2Configured: boolean;
+    engine: "r2" | "local" | "ephemeral";
+  } | null>(null);
 
   // Ambil cache lokal segera saat komponen mount
   useEffect(() => {
@@ -45,6 +59,9 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       const json = await res.json();
       if (json.success && json.data) {
         setContent(json.data);
+        if (json.storage) {
+          setStorageInfo(json.storage);
+        }
         try {
           localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(json.data));
         } catch {
@@ -106,6 +123,12 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
 
       if (res.ok && result?.success && result?.data) {
         setContent(result.data);
+        if (result.storageEngine) {
+          setStorageInfo({
+            isR2Configured: result.storageEngine === "r2",
+            engine: result.storageEngine,
+          });
+        }
         try {
           localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(result.data));
         } catch (storageErr) {
@@ -114,7 +137,9 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         return {
           success: true,
           message: result.message || "Konten berhasil disimpan.",
+          persistedToCloud: result.persistedToCloud,
           persistedToRepoFile: result.persistedToRepoFile,
+          storageEngine: result.storageEngine,
         };
       } else {
         return {
@@ -161,6 +186,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
     content,
     isLoading,
     isSaving,
+    storageInfo,
     refreshContent,
     updateContent,
     deleteMediaItem,

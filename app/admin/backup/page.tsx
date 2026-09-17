@@ -7,6 +7,7 @@ import { useAdmin } from "@/context/AdminContext";
 export default function AdminBackupPage() {
   const {
     formData,
+    storageInfo,
     handleDownloadBackup,
     handleImportBackup,
     handleResetToDefault,
@@ -15,6 +16,7 @@ export default function AdminBackupPage() {
   return (
     <SeoBackupTab
       formData={formData}
+      storageInfo={storageInfo}
       onDownloadBackup={handleDownloadBackup}
       onImportBackup={handleImportBackup}
       onResetToDefault={handleResetToDefault}

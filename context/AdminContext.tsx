@@ -9,6 +9,10 @@ interface AdminContextType {
   formData: SiteContentSchema;
   isDirty: boolean;
   isSaving: boolean;
+  storageInfo: {
+    isR2Configured: boolean;
+    engine: "r2" | "local" | "ephemeral";
+  } | null;
   editorLang: "id" | "en";
   setEditorLang: (lang: "id" | "en") => void;
   handleUpdateFormData: (updater: (prev: SiteContentSchema) => SiteContentSchema) => void;
@@ -38,7 +42,7 @@ interface AdminContextType {
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export function AdminProvider({ children }: { children: React.ReactNode }) {
-  const { content, updateContent, deleteMediaItem, resetToDefault } = useSiteContent();
+  const { content, updateContent, deleteMediaItem, resetToDefault, storageInfo } = useSiteContent();
 
   const [formData, setFormData] = useState<SiteContentSchema>(content);
   const [isDirty, setIsDirty] = useState(false);
@@ -282,6 +286,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         formData,
         isDirty,
         isSaving,
+        storageInfo,
         editorLang,
         setEditorLang,
         handleUpdateFormData,

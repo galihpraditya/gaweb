@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getSiteContent, saveSiteContent } from "@/lib/content-service";
 import { SiteContentSchema } from "@/lib/types/content";
+import { isR2Configured } from "@/lib/r2";
 
 const SESSION_COOKIE_NAME = "gaweb_admin_session";
 const SESSION_TOKEN = "authenticated_gaweb_admin_session_token_2026";
@@ -15,11 +17,22 @@ export const revalidate = 0;
 
 export async function GET(req: NextRequest) {
   try {
-    const content = getSiteContent();
-    return NextResponse.json({
-      success: true,
-      data: content,
-    });
+    const content = await getSiteContent();
+    return NextResponse.json(
+      {
+        success: true,
+        data: content,
+        storage: {
+          isR2Configured: isR2Configured(),
+          engine: isR2Configured() ? "r2" : "local",
+        },
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        },
+      }
+    );
   } catch (error) {
     console.error("Error reading content:", error);
     return NextResponse.json(
@@ -51,11 +64,20 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    const result = saveSiteContent(body);
+    const result = await saveSiteContent(body);
+
+    // Revalidasi cache halaman utama Next.js secara instan
+    try {
+      revalidatePath("/");
+    } catch {
+      // Abaikan jika revalidatePath tidak aktif di lingkungan tertentu
+    }
 
     return NextResponse.json({
       success: true,
+      persistedToCloud: result.persistedToCloud,
       persistedToRepoFile: result.persistedToRepoFile,
+      storageEngine: result.storageEngine,
       message: result.message,
       data: result.data,
     });
@@ -67,3 +89,4 @@ export async function PUT(req: NextRequest) {
     );
   }
 }
+
