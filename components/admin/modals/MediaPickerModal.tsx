@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { X, UploadCloud, Check, Search, ImageIcon } from "lucide-react";
 import { SiteContentSchema } from "@/lib/types/content";
+import { compressImage } from "@/lib/image-compress";
 
 interface MediaPickerModalProps {
   isOpen: boolean;
@@ -42,27 +43,42 @@ export function MediaPickerModal({
     if (!file) return;
 
     setIsUploading(true);
-    const bodyData = new FormData();
-    bodyData.append("file", file);
-    bodyData.append("name", file.name);
-    bodyData.append(
-      "category",
-      activeCategory === "all" ? "uploads" : activeCategory
-    );
 
     try {
+      const processedFile = await compressImage(file);
+      const bodyData = new FormData();
+      bodyData.append("file", processedFile);
+      bodyData.append("name", processedFile.name);
+      bodyData.append(
+        "category",
+        activeCategory === "all" ? "uploads" : activeCategory
+      );
+
       const res = await fetch("/api/admin/upload", {
         method: "POST",
         body: bodyData,
       });
-      const data = await res.json();
-      if (res.ok && data.success && data.item) {
+
+      if (res.status === 413) {
+        alert("Ukuran gambar terlalu besar untuk serverless Vercel (Maksimal 4.5MB).");
+        return;
+      }
+
+      let data: any = null;
+      try {
+        data = await res.json();
+      } catch {
+        alert("Respon server tidak valid saat mengunggah.");
+        return;
+      }
+
+      if (res.ok && data?.success && data?.item) {
         if (onUploadSuccess) {
           onUploadSuccess(data.item);
         }
         setSelectedUrl(data.item.url);
       } else {
-        alert(data.error || "Gagal mengunggah gambar.");
+        alert(data?.error || "Gagal mengunggah gambar.");
       }
     } catch {
       alert("Terjadi kesalahan saat mengunggah gambar.");

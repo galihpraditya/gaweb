@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from "react";
 import { SiteContentSchema, PortfolioItem } from "@/lib/types/content";
 import { useSiteContent } from "@/context/SiteContentContext";
+import { compressImage } from "@/lib/image-compress";
 
 interface AdminContextType {
   formData: SiteContentSchema;
@@ -185,27 +186,43 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   // Media handlers
   const handleUploadImage = async (file: File, category: string) => {
     setIsUploading(true);
-    const bodyData = new FormData();
-    bodyData.append("file", file);
-    bodyData.append("name", file.name);
-    bodyData.append("category", category);
 
     try {
+      const processedFile = await compressImage(file);
+      const bodyData = new FormData();
+      bodyData.append("file", processedFile);
+      bodyData.append("name", processedFile.name);
+      bodyData.append("category", category);
+
       const res = await fetch("/api/admin/upload", {
         method: "POST",
         body: bodyData,
       });
-      const data = await res.json();
-      if (res.ok && data.success && data.item) {
+
+      if (res.status === 413) {
+        showToast("Ukuran gambar terlalu besar untuk serverless Vercel (Maksimal 4.5MB).", "error");
+        return;
+      }
+
+      let data: any = null;
+      try {
+        data = await res.json();
+      } catch {
+        showToast("Server mengembalikan respon tidak valid saat mengunggah.", "error");
+        return;
+      }
+
+      if (res.ok && data?.success && data?.item) {
         showToast("Gambar berhasil diunggah ke pustaka media!");
         handleUpdateFormData((prev) => ({
           ...prev,
           mediaLibrary: [data.item, ...(prev.mediaLibrary || [])],
         }));
       } else {
-        showToast(data.error || "Gagal mengunggah gambar.", "error");
+        showToast(data?.error || "Gagal mengunggah gambar.", "error");
       }
-    } catch {
+    } catch (err) {
+      console.error("Upload error:", err);
       showToast("Terjadi gangguan saat mengunggah gambar.", "error");
     } finally {
       setIsUploading(false);
