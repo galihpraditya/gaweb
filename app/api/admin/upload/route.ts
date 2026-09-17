@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
 import path from "path";
 import { getSiteContent, saveSiteContent } from "@/lib/content-service";
+import { isR2Configured, uploadFileToR2, deleteFileFromR2 } from "@/lib/r2";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const SESSION_COOKIE_NAME = "gaweb_admin_session";
 const SESSION_TOKEN = "authenticated_gaweb_admin_session_token_2026";
@@ -19,6 +22,19 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // Cek apakah kredensial Cloudflare R2 sudah dikonfigurasi
+  if (!isR2Configured()) {
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          "Koneksi Cloudflare R2 belum dikonfigurasi. Mohon tambahkan variabel R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME, dan R2_PUBLIC_URL di file .env.local atau di Environment Variables Vercel.",
+        isNotConfigured: true,
+      },
+      { status: 400 }
+    );
+  }
+
   try {
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
@@ -33,10 +49,20 @@ export async function POST(req: NextRequest) {
     }
 
     // Validasi tipe file
-    const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/svg+xml", "image/gif"];
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/svg+xml",
+      "image/gif",
+    ];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
-        { success: false, error: "Format file harus berupa gambar (JPG, PNG, WebP, SVG, GIF)." },
+        {
+          success: false,
+          error:
+            "Format file harus berupa gambar (JPG, PNG, WebP, SVG, GIF).",
+        },
         { status: 400 }
       );
     }
@@ -44,72 +70,96 @@ export async function POST(req: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Buat nama file yang aman
+    // Format nama file unik dan aman untuk URL S3/R2
     const ext = path.extname(file.name) || ".webp";
     const safeBaseName = file.name
       .replace(ext, "")
       .toLowerCase()
       .replace(/[^a-z0-9_-]/g, "-")
-      .slice(0, 30);
+      .slice(0, 40);
     const fileName = `${Date.now()}-${safeBaseName}${ext}`;
 
-    const uploadsDir = path.join(process.cwd(), "public", "images", "uploads");
-    let fileUrl = `/images/uploads/${fileName}`;
-    let isBase64Fallback = false;
+    // Upload langsung ke Cloudflare R2
+    const { url: publicUrl } = await uploadFileToR2(buffer, fileName, file.type);
 
-    // Coba simpan ke folder public/images/uploads/ (local dev)
-    try {
-      if (!fs.existsSync(uploadsDir)) {
-        fs.mkdirSync(uploadsDir, { recursive: true });
-      }
-      fs.writeFileSync(path.join(uploadsDir, fileName), buffer);
-    } catch (writeErr) {
-      console.warn("Write to public/ failed (kemungkinan Vercel serverless read-only). Menggunakan Base64 Data URL:", writeErr);
-      // Fallback Vercel: simpan sebagai data URL
-      const base64Data = buffer.toString("base64");
-      fileUrl = `data:${file.type};base64,${base64Data}`;
-      isBase64Fallback = true;
-    }
+    // Daftarkan metadata ke mediaLibrary di site content
+    const mediaItem = {
+      id: `img-${Date.now()}`,
+      name: customName || file.name,
+      url: publicUrl,
+      category: (category as "hero" | "showcase" | "dashboard" | "logo" | "uploads") || "uploads",
+      uploadedAt: new Date().toISOString(),
+    };
 
-    // Daftarkan ke mediaLibrary di site content
     try {
       const currentContent = getSiteContent();
-      const mediaItem = {
-        id: `img-${Date.now()}`,
-        name: customName || file.name,
-        url: fileUrl,
-        category: (category as "hero" | "showcase" | "dashboard" | "logo" | "uploads") || "uploads",
-        uploadedAt: new Date().toISOString(),
-      };
-
-      currentContent.mediaLibrary = [mediaItem, ...(currentContent.mediaLibrary || [])];
+      currentContent.mediaLibrary = [
+        mediaItem,
+        ...(currentContent.mediaLibrary || []),
+      ];
       saveSiteContent(currentContent);
-
-      return NextResponse.json({
-        success: true,
-        message: isBase64Fallback
-          ? "Gambar berhasil diunggah (tersimpan dalam format data URL untuk lingkungan Vercel)."
-          : "Gambar berhasil diunggah dan disimpan di folder public.",
-        item: mediaItem,
-        isBase64Fallback,
-      });
-    } catch (dbErr) {
-      return NextResponse.json({
-        success: true,
-        message: "Gambar berhasil diunggah.",
-        item: {
-          id: `img-${Date.now()}`,
-          name: customName || file.name,
-          url: fileUrl,
-          category,
-          uploadedAt: new Date().toISOString(),
-        },
-      });
+    } catch (saveErr) {
+      console.warn("Gagal sinkronisasi otomatis mediaLibrary:", saveErr);
     }
-  } catch (error) {
-    console.error("Upload error:", error);
+
+    return NextResponse.json({
+      success: true,
+      message: "Gambar berhasil diunggah ke Cloudflare R2.",
+      item: mediaItem,
+    });
+  } catch (error: any) {
+    console.error("Cloudflare R2 upload error:", error);
     return NextResponse.json(
-      { success: false, error: "Gagal mengunggah gambar ke server." },
+      {
+        success: false,
+        error: error?.message || "Gagal mengunggah gambar ke Cloudflare R2.",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  if (!isAuthorized(req)) {
+    return NextResponse.json(
+      { success: false, error: "Akses ditolak. Silakan login terlebih dahulu." },
+      { status: 401 }
+    );
+  }
+
+  try {
+    const { searchParams } = new URL(req.url);
+    const fileUrl = searchParams.get("url");
+
+    if (!fileUrl) {
+      return NextResponse.json(
+        { success: false, error: "URL gambar harus disertakan." },
+        { status: 400 }
+      );
+    }
+
+    // Hapus file dari bucket Cloudflare R2 jika file berasal dari R2
+    await deleteFileFromR2(fileUrl);
+
+    // Hapus dari mediaLibrary lokal
+    try {
+      const currentContent = getSiteContent();
+      currentContent.mediaLibrary = (currentContent.mediaLibrary || []).filter(
+        (m) => m.url !== fileUrl
+      );
+      saveSiteContent(currentContent);
+    } catch {
+      // Abaikan jika content service sedang read-only
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Aset gambar berhasil dihapus dari Cloudflare R2 dan pustaka media.",
+    });
+  } catch (error: any) {
+    console.error("Cloudflare R2 delete error:", error);
+    return NextResponse.json(
+      { success: false, error: "Gagal menghapus aset gambar." },
       { status: 500 }
     );
   }

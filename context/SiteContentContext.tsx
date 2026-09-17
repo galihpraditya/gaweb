@@ -134,6 +134,17 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
   };
 
   const deleteMediaItem = async (mediaId: string) => {
+    const itemToDelete = (content.mediaLibrary || []).find((m) => m.id === mediaId);
+    if (itemToDelete?.url) {
+      try {
+        await fetch(`/api/admin/upload?url=${encodeURIComponent(itemToDelete.url)}`, {
+          method: "DELETE",
+        });
+      } catch (err) {
+        console.warn("Gagal menghapus file dari storage remote:", err);
+      }
+    }
+
     const updatedMedia = (content.mediaLibrary || []).filter((m) => m.id !== mediaId);
     const updatedContent = {
       ...content,
