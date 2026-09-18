@@ -153,12 +153,10 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
   id: {
     navbar: {
       links: [
-        { label: "Solusi", href: "#layanan" },
-        { label: "Keunggulan", href: "#keunggulan" },
         { label: "Portofolio", href: "#portofolio" },
+        { label: "Keunggulan", href: "#keunggulan" },
         { label: "Demo Admin", href: "#demo" },
         { label: "Harga Paket", href: "#harga" },
-        { label: "Cara Pesan", href: "#proses" },
         { label: "Tanya Jawab", href: "#faq" },
       ],
       cta: "Mulai Sekarang",
@@ -484,12 +482,10 @@ export const TRANSLATIONS: Record<Language, TranslationSchema> = {
   en: {
     navbar: {
       links: [
-        { label: "Solutions", href: "#layanan" },
-        { label: "Why Us", href: "#keunggulan" },
         { label: "Portfolio", href: "#portofolio" },
+        { label: "Why Us", href: "#keunggulan" },
         { label: "Live Demo", href: "#demo" },
         { label: "Pricing", href: "#harga" },
-        { label: "Process", href: "#proses" },
         { label: "FAQ", href: "#faq" },
       ],
       cta: "Get Started",

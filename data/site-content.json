@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-17T09:24:12.415Z",
+  "lastUpdated": "2026-09-18T02:43:38.082Z",
   "hero": {
     "h1Pre": {
       "id": "Bikin Website Modern yang",
@@ -38,24 +38,25 @@
   "portfolios": [
     {
       "id": "bromo-adventure",
-      "title": "Bromo Highland Adventure",
+      "title": "Documentation Equipment Rental Platform",
       "category": "travel",
       "categoryLabel": {
         "id": "Tour & Wisata",
         "en": "Tour & Travel"
       },
-      "clientName": "PT Bromo Wisata Nusantara",
+      "clientName": "DocuRent (Demo)",
       "description": {
-        "id": "Website tour & travel paket wisata Gunung Bromo dengan katalog trip interaktif, kalkulator harga otomatis, dan direct booking ke WhatsApp.",
-        "en": "Tour & travel website for Mount Bromo packages featuring interactive trip catalogs, auto price calculator, and direct WhatsApp booking."
+        "id": "Platform penyewaan kamera dan peralatan dokumentasi dengan sistem manajemen berbasis role (admin & user), dilengkapi katalog produk, keranjang belanja, dan alur checkout end-to-end mulai dari pemesanan hingga verifikasi pembayaran.",
+        "en": "A camera and documentation equipment rental platform with role-based management (admin & user), featuring a product catalog, shopping cart, and end-to-end checkout flow from ordering through payment verification."
       },
       "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636904926-screenshot-2026-09-16-133809.webp",
       "demoUrl": "https://docurent.gaweb.website",
       "tags": [
-        "Next.js",
-        "Katalog Trip",
-        "WhatsApp Checkout",
-        "PageSpeed 99"
+        "Laravel",
+        "Rental & Booking System",
+        "Multi-Role (Admin/User)",
+        "Cart & Checkout",
+        "Payment Verification"
       ],
       "metrics": {
         "pageSpeed": "99/100",
@@ -67,24 +68,24 @@
     },
     {
       "id": "senja-coffee",
-      "title": "Senja Artisan Coffee & Roastery",
+      "title": "Villa Booking Landing Page",
       "category": "umkm",
       "categoryLabel": {
         "id": "UMKM / Kuliner",
         "en": "F&B / Coffee"
       },
-      "clientName": "Senja Coffee Co.",
+      "clientName": "Amara Villa Bali (Demo)",
       "description": {
-        "id": "Landing page estetik kafe & roastery dengan menu digital responsif, galeri foto suasana, dan integrasi Google Maps untuk navigasi instan pelanggan.",
-        "en": "Aesthetic coffee shop & roastery landing page with responsive digital menu, ambience gallery, and instant Google Maps integration."
+        "id": "Website company profile villa di Bali dengan tampilan elegan menampilkan fasilitas, tipe vila, dan galeri visual, terintegrasi langsung dengan direct booking via WhatsApp untuk mempermudah calon tamu melakukan reservasi.",
+        "en": "An elegant company profile website for a villa in Bali, showcasing facilities, villa types, and a visual gallery, integrated with direct WhatsApp booking to make reservations easy for prospective guests."
       },
       "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636930903-screenshot-2026-09-17-114105.webp",
       "demoUrl": "https://villa.gaweb.website",
       "tags": [
-        "Tailwind CSS",
-        "Menu Digital",
-        "Maps Navigation",
-        "SEO Lokal"
+        "HTML/CSS/JS",
+        "Villa Landing Page",
+        "WhatsApp Booking",
+        "Visual Gallery"
       ],
       "metrics": {
         "pageSpeed": "98/100",
@@ -96,24 +97,23 @@
     },
     {
       "id": "praditya-law",
-      "title": "Praditya & Partners Law Firm",
+      "title": "Cafe Website with Interactive Taste Matcher",
       "category": "company-profile",
       "categoryLabel": {
         "id": "Company Profile",
         "en": "Company Profile"
       },
-      "clientName": "Praditya Legal Consultant",
+      "clientName": "BREW & CO. (Demo)",
       "description": {
-        "id": "Company profile kantor advokat & konsultan hukum profesional dengan desain berwibawa, profil partner, publikasi artikel hukum, dan booking konsultasi.",
-        "en": "Professional company profile for legal advocate & consultant featuring prestigious branding, partner profiles, and consultation scheduling."
+        "id": "Website cafe modern dengan fitur unggulan \"Pencocok Rasa Interaktif\" yang merekomendasikan menu berdasarkan preferensi rasa dan suasana yang dipilih pengunjung, dilengkapi galeri, testimoni, dan informasi kontak lengkap.",
+        "en": "A modern cafe website featuring an \"Interactive Taste Matcher\" that recommends menu items based on the flavor and mood preferences selected by visitors, complete with a gallery, testimonials, and contact information."
       },
       "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636961102-screenshot-2026-09-17-153524.webp",
       "demoUrl": "https://cafe.gaweb.website",
       "tags": [
-        "Next.js",
-        "Legal Profile",
-        "SEO Authority",
-        "Clean Design"
+        "HTML/CSS/JS",
+        "Interactive Taste Matcher",
+        "Gallery & Testimonials"
       ],
       "metrics": {
         "pageSpeed": "100/100",
@@ -125,23 +125,24 @@
     },
     {
       "id": "glowcare-clinic",
-      "title": "GlowCare Aesthetic Clinic",
+      "title": "Travel Package Booking Platform",
       "category": "landing-page",
       "categoryLabel": {
         "id": "Landing Page Jasa",
         "en": "Service Landing Page"
       },
-      "clientName": "GlowCare Medika",
+      "clientName": "Travelku (Demo)",
       "description": {
-        "id": "Landing page klinik kecantikan konversi tinggi dengan tabel perbandingan treatment, showcase testimoni before-after, dan tombol reservasi WhatsApp.",
-        "en": "High-conversion aesthetic clinic landing page with treatment comparison table, before-after testimonial showcase, and WhatsApp reservation."
+        "id": "Website tour & travel yang menampilkan berbagai paket wisata dengan katalog trip interaktif dan direct booking ke WhatsApp, dilengkapi dashboard admin penuh untuk mengelola konten dan pesanan.",
+        "en": "A tour & travel website showcasing various travel packages  with an interactive trip catalog and direct WhatsApp booking, complete with a full admin dashboard to manage content and orders."
       },
-      "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636944969-screenshot-2026-09-17-114145.webp",
+      "imageUrl": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789699376981-screenshot-2026-09-18-094228.webp",
       "demoUrl": "https://travel.gaweb.website",
       "tags": [
-        "Conversion-Focused",
-        "Testimonial Grid",
-        "Fast Loading"
+        "Next.js",
+        "Admin Dashboard",
+        "Trip Catalog",
+        "WhatsApp Checkout"
       ],
       "metrics": {
         "pageSpeed": "99/100",
@@ -337,18 +338,18 @@
   ],
   "mediaLibrary": [
     {
+      "id": "img-1789699377717",
+      "name": "Screenshot 2026-09-18 094228.webp",
+      "url": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789699376981-screenshot-2026-09-18-094228.webp",
+      "category": "uploads",
+      "uploadedAt": "2026-09-18T02:42:57.717Z"
+    },
+    {
       "id": "img-1789636961862",
       "name": "Screenshot 2026-09-17 153524.webp",
       "url": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636961102-screenshot-2026-09-17-153524.webp",
       "category": "uploads",
       "uploadedAt": "2026-09-17T09:22:41.862Z"
-    },
-    {
-      "id": "img-1789636945720",
-      "name": "Screenshot 2026-09-17 114145.webp",
-      "url": "https://pub-433182def4454df59dac980d52f5859f.r2.dev/1789636944969-screenshot-2026-09-17-114145.webp",
-      "category": "uploads",
-      "uploadedAt": "2026-09-17T09:22:25.720Z"
     },
     {
       "id": "img-1789636931694",

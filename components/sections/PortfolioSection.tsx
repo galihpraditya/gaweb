@@ -7,11 +7,9 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useSiteContent } from "@/context/SiteContentContext";
 import { getWhatsAppUrl } from "@/lib/constants";
 import { PortfolioItem } from "@/lib/types/content";
-import { Button } from "@/components/ui/Button";
 import {
   ExternalLink,
   MessageCircle,
-  CheckCircle2,
 } from "lucide-react";
 
 export function PortfolioSection() {
@@ -134,39 +132,7 @@ export function PortfolioSection() {
           </div>
         )}
 
-        {/* Bottom Callout */}
-        <div className="mt-12 bg-slate-50/80 rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <h4 className="text-base sm:text-lg font-bold text-[#092734] flex items-center justify-center sm:justify-start gap-2">
-              <CheckCircle2 className="w-5 h-5 text-[#004F72] shrink-0" />
-              <span>Semua website di atas bisa kamu kelola sendiri dengan mudah</span>
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
-              Dikerjakan cepat, terima beres domain + hosting, dan bebas biaya plugin tahunan.
-            </p>
-          </div>
 
-          <a
-            href={getWhatsAppUrl(
-              language === "en"
-                ? "Hello gaweb, I want to discuss a custom website for my business."
-                : "Halo gaweb, saya ingin konsultasi pembuatan website custom untuk usaha saya.",
-              content?.contact?.whatsappNumber
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto shrink-0"
-          >
-            <Button
-              variant="primary"
-              size="md"
-              className="w-full sm:w-auto gap-2 font-bold px-6 py-2.5 shadow-sm"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-300" />
-              <span>Konsultasi Proyek Gratis</span>
-            </Button>
-          </a>
-        </div>
       </div>
     </section>
   );
