@@ -76,9 +76,6 @@ export function JsonLd() {
         name: "Jakarta",
       },
     ],
-    sameAs: [
-      `https://instagram.com/${CONTACT.instagram.replace("@", "")}`,
-    ],
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: SEO_CONFIG.aggregateRating.ratingValue,

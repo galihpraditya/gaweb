@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BRAND, CONTACT, getWhatsAppUrl } from "@/lib/constants";
-import { MessageCircle, Instagram, Mail, MapPin } from "lucide-react";
+import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSiteContent } from "@/context/SiteContentContext";
 
@@ -13,7 +13,6 @@ export function Footer() {
   const contact = content?.contact || CONTACT;
   const whatsappNumber = contact.whatsappNumber || CONTACT.whatsappNumber;
   const email = contact.email || CONTACT.email;
-  const instagram = contact.instagram || CONTACT.instagram;
   const location = contact.location || CONTACT.location;
 
   return (
@@ -71,17 +70,6 @@ export function Footer() {
                 >
                   <MessageCircle className="w-4 h-4 text-slate-400 group-hover:text-emerald-400 shrink-0 transition-colors" />
                   <span>{t.footer.waText}</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`https://instagram.com/${instagram.replace('@', '')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-white transition-colors group"
-                >
-                  <Instagram className="w-4 h-4 text-slate-400 group-hover:text-pink-400 shrink-0 transition-colors" />
-                  <span>{instagram}</span>
                 </a>
               </li>
               <li>

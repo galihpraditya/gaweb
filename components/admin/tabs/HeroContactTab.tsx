@@ -9,7 +9,6 @@ import {
   Sparkles,
   PhoneCall,
   Mail,
-  Instagram,
   MapPin,
 } from "lucide-react";
 import { SiteContentSchema } from "@/lib/types/content";
@@ -250,22 +249,6 @@ export function HeroContactTab({
                 onUpdateContact((prev) => ({ ...prev, email: e.target.value }))
               }
               placeholder="gaweb.website@gmail.com"
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#004F72]/20 focus:border-[#004F72] outline-none"
-            />
-          </div>
-
-          <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-              <Instagram className="w-3.5 h-3.5 text-pink-600" />
-              <span>Username Instagram</span>
-            </label>
-            <input
-              type="text"
-              value={contact?.instagram || ""}
-              onChange={(e) =>
-                onUpdateContact((prev) => ({ ...prev, instagram: e.target.value }))
-              }
-              placeholder="@gaweb.website"
               className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#004F72]/20 focus:border-[#004F72] outline-none"
             />
           </div>

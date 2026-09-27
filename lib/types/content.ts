@@ -33,7 +33,7 @@ export interface PortfolioItem {
 export interface SiteContact {
   whatsappNumber: string;
   email: string;
-  instagram: string;
+  instagram?: string;
   location: string;
   city: string;
 }
