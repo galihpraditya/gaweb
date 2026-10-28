@@ -7,6 +7,7 @@ import { PricingSection } from "@/components/sections/PricingSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { QuickInquirySection } from "@/components/sections/QuickInquirySection";
 import { Footer } from "@/components/sections/Footer";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 export default function Home() {
   return (
@@ -39,6 +40,9 @@ export default function Home() {
 
       {/* 9. Footer */}
       <Footer />
+
+      {/* 10. Sticky Mobile Floating WhatsApp CTA */}
+      <FloatingWhatsApp />
     </div>
   );
 }

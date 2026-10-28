@@ -3,6 +3,7 @@
 import React from "react";
 import { Plus, Trash2, ChevronUp, ChevronDown, Sparkles } from "lucide-react";
 import { SitePricingPlan } from "@/lib/types/content";
+import { formatDiscountBadge } from "@/lib/price-utils";
 
 interface PricingTabProps {
   pricing: SitePricingPlan[];
@@ -258,7 +259,7 @@ export function PricingTab({
 
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <label className="text-[11px] font-bold text-slate-600">Teks Badge / Diskon</label>
+                      <label className="text-[11px] font-bold text-slate-600">Teks Badge Status (Atas)</label>
                       <span className="text-[10px] text-slate-400 font-bold">
                         {currentLang === "id" ? "🇮🇩 ID" : "🇬🇧 EN"}
                       </span>
@@ -270,10 +271,9 @@ export function PricingTab({
                         const updatedBadge = setBilingualText(plan.badge, e.target.value, currentLang);
                         handleUpdatePlan(idx, {
                           badge: updatedBadge,
-                          discountBadge: updatedBadge,
                         });
                       }}
-                      placeholder={currentLang === "id" ? "Hemat 33%" : "Save 33%"}
+                      placeholder={currentLang === "id" ? "Contoh: Paling Populer (Kosongkan jika tanpa badge)" : "e.g. Most Popular"}
                       className="w-full px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs outline-none focus:border-[#004F72]"
                     />
                   </div>
@@ -297,28 +297,47 @@ export function PricingTab({
                 </div>
 
                 {/* Prices: Promo & Original */}
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-slate-600">Harga Promo</label>
-                    <input
-                      type="text"
-                      value={plan.priceDisplay}
-                      onChange={(e) => handleUpdatePlan(idx, { priceDisplay: e.target.value })}
-                      placeholder="Rp 999.000"
-                      className="w-full px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-[#004F72] outline-none focus:border-[#004F72]"
-                    />
+                <div className="space-y-1.5">
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-bold text-slate-600">Harga Promo</label>
+                      <input
+                        type="text"
+                        value={plan.priceDisplay}
+                        onChange={(e) => handleUpdatePlan(idx, { priceDisplay: e.target.value })}
+                        placeholder="Rp 999.000"
+                        className="w-full px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-[#004F72] outline-none focus:border-[#004F72]"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-bold text-slate-600">Harga Coret</label>
+                      <input
+                        type="text"
+                        value={plan.originalPrice || ""}
+                        onChange={(e) => handleUpdatePlan(idx, { originalPrice: e.target.value })}
+                        placeholder="Rp 1.500.000"
+                        className="w-full px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs text-slate-400 line-through outline-none focus:border-[#004F72]"
+                      />
+                    </div>
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-slate-600">Harga Coret</label>
-                    <input
-                      type="text"
-                      value={plan.originalPrice || ""}
-                      onChange={(e) => handleUpdatePlan(idx, { originalPrice: e.target.value })}
-                      placeholder="Rp 1.500.000"
-                      className="w-full px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs text-slate-400 line-through outline-none focus:border-[#004F72]"
-                    />
-                  </div>
+                  {/* Auto-Calculated Discount Preview */}
+                  {(() => {
+                    const autoBadge = formatDiscountBadge(plan.originalPrice, plan.priceDisplay, currentLang);
+                    if (!autoBadge) return null;
+                    return (
+                      <div className="flex items-center gap-1.5 text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg px-2.5 py-1">
+                        <span className="font-semibold">Diskon Otomatis:</span>
+                        <span className="font-bold bg-white px-1.5 py-0.5 rounded border border-emerald-300 text-rose-600">
+                          {autoBadge}
+                        </span>
+                        <span className="text-slate-500 text-[10px]">
+                          (dihitung otomatis pada kartu harga)
+                        </span>
+                      </div>
+                    );
+                  })()}
                 </div>
 
                 {/* Timeline & Target */}

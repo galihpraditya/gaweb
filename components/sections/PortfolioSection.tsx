@@ -94,14 +94,14 @@ export function PortfolioSection() {
                     ))}
                   </div>
 
-                  {/* Action CTA Buttons (Hidden until hover on desktop) */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center gap-2 sm:gap-2.5 opacity-100 sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300">
+                  {/* Action CTA Buttons (Always accessible, subtle hover lift) */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center gap-2 sm:gap-2.5 transition-all duration-200">
                     {item.demoUrl && (
                       <a
                         href={item.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 rounded-xl text-[11px] sm:text-xs font-bold text-[#004F72] hover:bg-[#004F72]/5 border border-[#004F72]/30 transition-colors whitespace-nowrap"
+                        className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 rounded-xl text-[11px] sm:text-xs font-bold text-[#004F72] bg-slate-50 hover:bg-[#004F72]/10 border border-slate-200 hover:border-[#004F72]/30 transition-all whitespace-nowrap shadow-2xs"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                         <span>{t.portfolio.viewLiveDemo}</span>

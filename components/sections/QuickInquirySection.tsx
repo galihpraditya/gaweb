@@ -20,10 +20,11 @@ export function QuickInquirySection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const packageNames: Record<string, string> = {
-      starter: language === "en" ? "Starter Plan (Landing Page)" : "Promo Starter (Landing Page Rp 999.000)",
-      bisnis: language === "en" ? "Business Plan (Company Profile)" : "Promo Bisnis (Company Profile Rp 1.999.000)",
-      travel: language === "en" ? "Custom Plus Plan (Catalog & Features)" : "Promo Custom Plus (Katalog & Fitur Rp 2.800.000)",
-      custom_plus: language === "en" ? "Custom Plus Plan (Catalog & Features)" : "Promo Custom Plus (Katalog & Fitur Rp 2.800.000)",
+      starter: language === "en" ? "Starter Plan (Landing Page Rp 999.000)" : "Promo Starter (Landing Page Rp 999.000)",
+      bisnis: language === "en" ? "Business Plan (Company Profile Rp 1.999.000)" : "Promo Bisnis (Company Profile Rp 1.999.000)",
+      travel: language === "en" ? "Custom Plus Plan (Catalog & Features Rp 2.800.000)" : "Promo Custom Plus (Katalog & Fitur Rp 2.800.000)",
+      "custom-plus": language === "en" ? "Custom Plus Plan (Catalog & Features Rp 2.800.000)" : "Promo Custom Plus (Katalog & Fitur Rp 2.800.000)",
+      custom_plus: language === "en" ? "Custom Plus Plan (Catalog & Features Rp 2.800.000)" : "Promo Custom Plus (Katalog & Fitur Rp 2.800.000)",
       custom: language === "en" ? "Custom Project Consultation" : "Kebutuhan Custom Khusus",
     };
 
