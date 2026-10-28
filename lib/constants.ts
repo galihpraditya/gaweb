@@ -72,23 +72,23 @@ export const SEO_CONFIG = {
   },
   services: [
     {
-      name: "Paket Promo Starter (Landing Page Custom)",
+      name: "Paket Starter (Landing Page Custom)",
       description:
-        "1 Halaman Landing Page konversi tinggi, domain & cloud hosting 1 tahun, garansi 7 hari, dashboard CMS mandiri.",
+        "1 Halaman Landing Page responsif, domain & hosting 1 tahun, garansi 7 hari, dashboard admin edit sendiri.",
       price: "999000",
       currency: "IDR",
     },
     {
-      name: "Paket Promo Bisnis (Company Profile Custom)",
+      name: "Paket Bisnis (Company Profile Custom)",
       description:
-        "3-5 Halaman website profesional, optimasi SEO on-page, domain .com & cloud hosting 1 tahun, dashboard CMS mandiri.",
+        "3-5 Halaman website profesional, optimasi SEO Google, domain .com & hosting 1 tahun, dashboard admin mandiri.",
       price: "1999000",
       currency: "IDR",
     },
     {
-      name: "Paket Promo Custom Plus (Katalog & Fitur Wisata)",
+      name: "Paket Custom Plus (Katalog & Fitur)",
       description:
-        "Website custom multi-halaman dengan katalog produk/paket wisata interaktif, filter kategori, domain & hosting 1 tahun.",
+        "Website katalog produk/paket wisata interaktif, filter kategori, domain & hosting 1 tahun, garansi 7 hari.",
       price: "2800000",
       currency: "IDR",
     },

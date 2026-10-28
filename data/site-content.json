@@ -157,17 +157,17 @@
     {
       "id": "starter",
       "name": {
-        "id": "Paket Promo Starter",
-        "en": "Promo Starter Package"
+        "id": "Starter",
+        "en": "Starter"
       },
       "badge": {
-        "id": "",
-        "en": ""
+        "id": "Landing Page",
+        "en": "Landing Page"
       },
       "isPopular": false,
       "target": {
-        "id": "Cocok untuk UMKM pemula, personal branding, atau promosi 1 produk utama.",
-        "en": "Ideal for startups, personal branding, or single-product campaigns."
+        "id": "Untuk personal branding, portofolio, atau promosi satu produk.",
+        "en": "For personal branding, portfolios, or single-product promos."
       },
       "originalPrice": "Rp 1.500.000",
       "discountBadge": {
@@ -180,35 +180,35 @@
         "en": "3–5 business days"
       },
       "description": {
-        "id": "Website 1 halaman (landing page) konversi tinggi yang ringkas, cepat, dan fokus menjual.",
-        "en": "A streamlined, high-converting single-page website that is fast and built to sell."
+        "id": "Landing page 1 halaman. Cepat dibuka dan langsung mengarahkan pengunjung ke WhatsApp.",
+        "en": "Fast, 1-page landing page that guides visitors straight to WhatsApp."
       },
       "features": {
         "id": [
-          "1 Halaman Landing Page konversi tinggi",
-          "Desain modern, mobile-friendly & responsif",
-          "Domain (.com / .id) & Cloud Hosting 1 tahun",
-          "Dashboard admin mandiri (edit teks & foto sendiri)",
-          "Video panduan training admin 15 menit via Loom",
-          "Integrasi tombol WhatsApp & formulir kontak",
-          "Garansi perbaikan bug & error 7 hari"
+          "1 halaman landing page responsif",
+          "Domain (.com/.id) & hosting 1 tahun",
+          "Dashboard admin (edit teks & foto sendiri)",
+          "Tombol WhatsApp & formulir kontak",
+          "Optimasi Google SEO & PageSpeed 90+",
+          "Video panduan cara pakai (15 menit)",
+          "Garansi error 7 hari"
         ],
         "en": [
-          "1 High-Converting Landing Page",
-          "Modern, Mobile-Friendly & Responsive Design",
-          "Domain (.com / .id) & 1-Year Cloud Hosting",
-          "Self-Serve Admin Dashboard (Edit Text & Photos)",
-          "15-Minute Admin Training Video via Loom",
-          "WhatsApp Button & Contact Form Integration",
-          "7-Day Bug & Error Repair Warranty"
+          "1 responsive landing page",
+          "Domain (.com/.id) & 1-year hosting",
+          "Admin dashboard (edit text & photos)",
+          "WhatsApp button & contact form",
+          "Google SEO & 90+ PageSpeed score",
+          "15-minute video guide",
+          "7-day bug warranty"
         ]
       }
     },
     {
       "id": "bisnis",
       "name": {
-        "id": "Paket Promo Bisnis",
-        "en": "Promo Business Package"
+        "id": "Bisnis",
+        "en": "Business"
       },
       "badge": {
         "id": "Paling Populer",
@@ -216,8 +216,8 @@
       },
       "isPopular": true,
       "target": {
-        "id": "Pilihan terbaik untuk UMKM berkembang, profil perusahaan & jasa profesional.",
-        "en": "Best choice for growing businesses, corporate profiles & services."
+        "id": "Untuk profil perusahaan, agensi, kantor jasa, atau klinik.",
+        "en": "For company profiles, agencies, services, or clinics."
       },
       "originalPrice": "Rp 2.800.000",
       "discountBadge": {
@@ -230,42 +230,44 @@
         "en": "5–7 business days"
       },
       "description": {
-        "id": "Website multi-halaman lengkap dan berwibawa untuk membangun kredibilitas bisnis.",
-        "en": "An authoritative multi-page website to establish strong brand credibility."
+        "id": "Website 3–5 halaman untuk menampilkan profil usaha, rincian layanan, galeri, dan kontak resmi.",
+        "en": "A 3–5 page website to showcase your business profile, services, gallery, and contact info."
       },
       "features": {
         "id": [
-          "Semua fitur Paket Starter",
-          "3–5 Halaman (Beranda, Profil, Layanan, Kontak)",
-          "Optimasi Google SEO dasar (muncul di pencarian)",
+          "Semua fitur paket Starter",
+          "3–5 halaman (Beranda, Profil, Layanan, Kontak)",
+          "Dashboard kelola konten & galeri foto",
           "Integrasi Google Maps lokasi bisnis",
-          "Desain custom eksklusif sesuai warna brand",
-          "Dukungan prioritas via WhatsApp 1 bulan"
+          "Desain custom sesuai warna brand",
+          "Optimasi SEO Google & PageSpeed 90+",
+          "Revisi 1x mayor + 10 minor & garansi 7 hari"
         ],
         "en": [
-          "All Starter Package Features",
-          "3–5 Pages (Home, About, Services, Contact)",
-          "Basic Google SEO Optimization (Search Ready)",
-          "Google Maps Business Location Integration",
-          "Exclusive Custom Design Tailored to Brand Colors",
-          "1-Month Priority Support via WhatsApp"
+          "Everything in Starter",
+          "3–5 pages (Home, About, Services, Contact)",
+          "Dashboard for content & photo gallery",
+          "Google Maps location integration",
+          "Custom design matched to your brand",
+          "Google SEO & 90+ PageSpeed score",
+          "1x major revision + 10 minor & 7-day warranty"
         ]
       }
     },
     {
       "id": "custom-plus",
       "name": {
-        "id": "Paket Promo Custom Plus",
-        "en": "Custom Plus Package"
+        "id": "Custom Plus",
+        "en": "Custom Plus"
       },
       "badge": {
-        "id": "Solusi Lengkap",
-        "en": "Full Solution"
+        "id": "Katalog & Fitur",
+        "en": "Catalogs & Features"
       },
       "isPopular": false,
       "target": {
-        "id": "Sangat ideal untuk biro tour & travel, katalog produk, atau rental mobil.",
-        "en": "Ideal for tour & travel agencies, product catalogs, or car rentals."
+        "id": "Untuk rental kendaraan, tour & travel, atau usaha berkatalog.",
+        "en": "For vehicle rentals, tour & travel, or businesses with catalogs."
       },
       "originalPrice": "Rp 3.800.000",
       "discountBadge": {
@@ -278,25 +280,27 @@
         "en": "6–8 business days"
       },
       "description": {
-        "id": "Website custom dengan fitur katalog dinamis untuk menampilkan banyak produk/paket wisata.",
-        "en": "Custom website with dynamic catalog features to showcase multiple products or tours."
+        "id": "Website katalog interaktif dengan filter kategori dan tombol order ke WhatsApp per produk.",
+        "en": "Interactive catalog with category filters and per-item WhatsApp order buttons."
       },
       "features": {
         "id": [
-          "Semua fitur Paket Bisnis",
+          "Semua fitur paket Bisnis",
           "Katalog produk / paket wisata interaktif",
-          "Filter kategori & fitur pencarian produk",
-          "Tombol order langsung ke WhatsApp per produk",
-          "Struktur SEO produk lebih optimal",
-          "Training intensif pengelolaan katalog"
+          "Filter kategori & kolom pencarian",
+          "Tombol order WhatsApp per produk",
+          "Dashboard khusus tambah item & harga",
+          "Halaman detail & galeri foto per item",
+          "Panduan kelola katalog & garansi 7 hari"
         ],
         "en": [
-          "All Business Package Features",
-          "Interactive Product / Tour Package Catalog",
-          "Category Filters & Product Search Feature",
-          "Direct WhatsApp Order Button per Product",
-          "Optimized Product SEO Architecture",
-          "Intensive Catalog Management Training"
+          "Everything in Business",
+          "Interactive product / tour package catalog",
+          "Category filters & search bar",
+          "Direct WhatsApp order button per item",
+          "Dedicated dashboard for items & prices",
+          "Detail page & photo gallery per item",
+          "Catalog management guide & 7-day warranty"
         ]
       }
     }
