@@ -110,15 +110,39 @@ export function PortfolioTab({
                 className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between"
               >
                 {/* Image Showcase Container */}
-                <div className="relative aspect-[16/10] w-full bg-slate-100">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                {item.demoUrl ? (
+                  <a
+                    href={item.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Buka live demo: ${item.title}`}
+                    className="relative aspect-[16/10] w-full bg-slate-100 block cursor-pointer group/admin-preview overflow-hidden"
+                  >
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover/admin-preview:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-slate-900/0 group-hover/admin-preview:bg-slate-900/30 transition-all duration-300 flex items-center justify-center">
+                      <span className="opacity-0 group-hover/admin-preview:opacity-100 transition-opacity duration-200 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 text-[#004F72] text-[11px] font-bold shadow-md">
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Buka Live Demo</span>
+                      </span>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="relative aspect-[16/10] w-full bg-slate-100">
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
 
                 {/* Details */}
                 <div className="p-5 space-y-3.5 flex-1 flex flex-col justify-between">
